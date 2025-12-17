@@ -1,0 +1,152 @@
+<image>
+    <packages type="image" profiles="common_debian">
+        <!-- Package management -->
+        <package name="apt-listchanges"/>
+        <package name="apt-transport-https"/>
+        <package name="aptitude"/>
+        <package name="debconf-utils"/>
+        <package name="debian-archive-keyring"/>
+        <package name="debian-keyring"/>
+        <package name="debsecan"/>
+        <package name="debsums"/>
+        <package name="gnome-packagekit"/>
+        <package name="gnome-package-updater"/>
+        <package name="packagekit"/>
+        <package name="packagekit-tools"/>
+        <package name="software-properties-gtk"/>
+        <package name="synaptic"/>
+        <package name="unattended-upgrades"/>
+        <package name="vrms"/>
+        <package name="command-not-found"/>
+
+        <!-- Task management/monitoring -->
+        <package name="xfce4-taskmanager"/>
+        <package name="htop"/>
+        <package name="iotop"/>
+        <package name="lm-sensors"/>
+        <package name="inxi"/>
+        <package name="lsof"/>
+        <package name="strace"/>
+        <package name="memtest86+"/>
+
+        <!-- Backup -->
+        <package name="deja-dup"/>
+
+        <!-- Disk management -->
+        <package name="gnome-disk-utility"/>
+        <package name="gparted"/>
+        <package name="baobab"/>
+        <package name="ncdu"/>
+        <package name="dfc"/>
+        <package name="smartmontools"/>
+        <package name="mtools"/>
+        <package name="gdisk"/>
+        <package name="parted"/>
+        <package name="hdparm"/>
+        <package name="sdparm"/>
+        <package name="dosfstools"/>
+        <package name="hfsprogs"/>
+        <package name="ntfs-3g"/>
+        <package name="kpartx"/>
+        <package name="xorriso"/>
+        <package name="lvm2"/>
+
+        <!-- Data recovery -->
+        <package name="testdisk"/>
+
+        <!-- File cleaners -->
+        <package name="bleachbit"/>
+        <package name="localepurge"/>
+
+        <!-- Log viewers -->
+        <package name="gnome-system-log"/>
+        <package name="lnav"/>
+        <package name="colortail"/>
+
+        <!-- Virtualization -->
+        <package name="virt-manager"/>
+        <package name="virtinst"/>
+        <package name="virt-viewer"/>
+        <package name="ebtables"/>
+        <package name="dnsmasq-base"/>
+        <package name="libvirt-daemon-system"/>
+        <package name="gir1.2-spiceclientgtk-3.0"/>
+        <package name="qemu-utils"/>
+        <package name="libguestfs-tools"/>
+        <package name="virt-p2v"/>
+        <package name="libguestfs-rsync"/>
+        <package name="libguestfs-rescue"/>
+        <package name="netcat-openbsd"/>
+        <!-- Architecture specific QEMU packages could be gated but keeping common for now -->
+        
+        <!-- Java -->
+        <package name="default-jre"/>
+
+        <!-- Display manager -->
+        <package name="lightdm"/>
+        <package name="lightdm-gtk-greeter"/>
+        <package name="light-locker"/>
+
+        <!-- Boot screen -->
+        <package name="plymouth"/>
+        <package name="plymouth-x11"/>
+        <package name="plymouth-themes"/>
+
+        <!-- Scheduling -->
+        <package name="at"/>
+
+        <!-- Security -->
+        <package name="apparmor"/>
+        <package name="apparmor-profiles"/>
+        <package name="apparmor-utils"/>
+        <package name="libpam-tmpdir"/>
+        <package name="sudo"/>
+
+        <!-- Time -->
+        <package name="chrony"/>
+
+        <!-- Display -->
+        <package name="mesa-utils"/>
+        <package name="libgl1-mesa-dri"/>
+        <package name="va-driver-all"/>
+        <package name="xinput"/>
+        <package name="xorg"/>
+        <package name="xinit"/>
+        <package name="xfonts-base"/>
+        <package name="xfonts-scalable"/>
+        <package name="xfonts-75dpi"/>
+        <package name="xfonts-100dpi"/>
+        <package name="xserver-xorg"/>
+        <package name="xserver-xorg-input-all"/>
+        <package name="xserver-xorg-input-wacom"/>
+        <package name="xserver-xorg-input-aiptek"/>
+        <package name="xserver-xorg-input-elographics"/>
+        <package name="xserver-xorg-input-joystick"/>
+        <package name="xserver-xorg-input-kbd"/>
+        <package name="xserver-xorg-input-mouse"/>
+        <package name="xserver-xorg-input-mutouch"/>
+        <package name="xserver-xorg-input-multitouch"/>
+        <package name="xserver-xorg-input-synaptics"/>
+        <package name="xserver-xorg-video-all"/>
+        <package name="xserver-xorg-video-intel"/>
+        <package name="hwdata"/>
+
+        <!-- Kernel misc -->
+        <package name="module-assistant"/>
+        <package name="dkms"/>
+        <package name="build-essential"/>
+        <package name="systemd"/>
+        <package name="os-prober"/>
+        <package name="initramfs-tools"/>
+        <package name="console-setup"/>
+        <package name="user-setup"/>
+        <package name="libpam-systemd"/>
+        
+        <!-- Live tools -->
+        <package name="live-boot"/>
+        <package name="live-config"/>
+        <package name="live-config-systemd"/>
+        <package name="live-tools"/>
+        <package name="eject"/>
+    </packages>
+</image>

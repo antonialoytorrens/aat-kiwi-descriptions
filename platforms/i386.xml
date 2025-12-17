@@ -1,0 +1,31 @@
+<image>
+
+    <preferences profiles="i386">
+        <type image="oem" initrd_system="dracut" filesystem="ext4" bootloader="grub2">
+            <boot-partition-size>512</boot-partition-size>
+            <oemconfig>
+                <oem-resize>true</oem-resize>
+            </oemconfig>
+        </type>
+    </preferences>
+
+    <!-- Debian -->
+    <packages type="image" profiles="i386_debian">
+        <package name="linux-image-686"/>
+        <package name="grub-pc"/>
+        <package name="grub-efi-ia32-bin"/>
+    </packages>
+
+    <!-- Alpine -->
+    <packages type="image" profiles="i386_alpine">
+        <package name="linux-lts"/>
+        <package name="grub"/>
+        <package name="grub-efi"/>
+    </packages>
+
+    <!-- PostmarketOS -->
+    <packages type="image" profiles="i386_pmos">
+        <package name="linux-lts"/>
+        <package name="postmarketos-base"/>
+    </packages>
+</image>

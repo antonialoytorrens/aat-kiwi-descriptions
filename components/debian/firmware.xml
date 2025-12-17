@@ -1,0 +1,17 @@
+<image>
+    <!-- Firmware for x86_64 and i386 Debian -->
+    <packages type="image" profiles="x86_64_debian,i386_debian">
+        <package name="firmware-linux-free"/>
+        <package name="firmware-realtek"/>
+        <package name="firmware-atheros"/>
+        <package name="firmware-b43-installer"/>
+        <package name="firmware-brcm80211"/>
+        <package name="firmware-ipw2x00"/>
+        <package name="firmware-iwlwifi"/>
+        <package name="amd64-microcode"/>
+        <package name="intel-microcode"/>
+        <package name="broadcom-sta-dkms"/>
+        <package name="broadcom-sta-source"/>
+        <package name="broadcom-sta-common"/>
+    </packages>
+</image>

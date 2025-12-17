@@ -1,0 +1,24 @@
+<image>
+
+    <preferences profiles="tf101">
+        <type image="oem" initrd_system="dracut" filesystem="ext4" bootloader="custom" bootpartition="true" bootfilesystem="fat16">
+            <boot-partition-size>256</boot-partition-size>
+            <oemconfig>
+                <oem-resize>true</oem-resize>
+            </oemconfig>
+        </type>
+    </preferences>
+
+    <!-- Debian -->
+    <packages type="image" profiles="tf101_debian">
+        <package name="linux-image-asus-tf101"/>
+        <package name="u-boot-asus-tf101"/>
+        <package name="u-boot-menu"/>
+    </packages>
+
+    <!-- PostmarketOS -->
+    <packages type="image" profiles="tf101_pmos">
+        <package name="linux-asus-tf101"/>
+        <package name="postmarketos-base"/>
+    </packages>
+</image>

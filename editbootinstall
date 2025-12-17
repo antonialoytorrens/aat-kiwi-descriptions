@@ -1,0 +1,43 @@
+#!/bin/bash
+set -eu -o pipefail
+
+# $1 = device containing the image file
+# $2 = mount point of the root filesystem
+disk_device=$1
+mount_point=$2
+
+echo "Running editbootinstall hook..."
+echo "Disk device: $disk_device"
+
+# Import system functions if needed (Kiwi usually provides environment)
+
+# Detect if we are building for Odroid U3
+# A robust way is to check for a marker file or the kernel type installed
+if [ -f "$mount_point/boot/vmlinuz-*-armmp" ] || [ -f "$mount_point/usr/lib/u-boot/odroid-u3/u-boot.bin" ]; then
+    echo "Hook: Odroid U3 detected."
+    
+    # In a real scenario, you usually need the u-boot binary available.
+    # It might be installed by a package into /usr/lib/u-boot/...
+    # For now, we simulate the flashing instructions.
+    
+    # Odroid U3 typically requires signing/bl1/bl2/uboot at specific offsets.
+    # This is highly specific and usually provided by u-boot-exynos or similar package.
+    
+    # Example logic:
+    # dd if=/usr/lib/u-boot/odroid-u3/u-boot.bin of=$disk_device bs=512 seek=63 cmd=notrunc (example)
+    
+    echo "WARNING: Odroid U3 U-Boot flashing logic is a placeholder."
+    echo "Real implementation requires signed generic binaries for Exynos4412."
+fi
+
+# RPi handling
+if [ -f "$mount_point/usr/lib/raspi-firmware/kernel8.img" ]; then
+    echo "Hook: Raspberry Pi firmwares detected."
+    # usually nothing to do if internal bootloader is grub2-efi, 
+    # but if 'custom' was chosen and we want to use u-boot for RPi:
+    # Copy u-boot.bin to /boot/firmware/kernel8.img
+    # cp $mount_point/usr/lib/u-boot/rpi/u-boot.bin $mount_point/boot/firmware/kernel8.img
+    :
+fi
+
+exit 0

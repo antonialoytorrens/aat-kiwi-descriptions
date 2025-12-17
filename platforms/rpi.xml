@@ -1,0 +1,18 @@
+<image>
+
+    <preferences profiles="rpi">
+        <type image="oem" initrd_system="dracut" filesystem="ext4" bootloader="grub2" firmware="efi">
+            <boot-partition-size>256</boot-partition-size>
+            <oemconfig>
+                <oem-resize>true</oem-resize>
+            </oemconfig>
+        </type>
+    </preferences>
+
+    <packages type="image" profiles="rpi_debian">
+        <package name="linux-image-arm64"/>
+        <package name="raspi-firmware"/>
+        <package name="u-boot-rpi"/>
+        <package name="u-boot-menu"/>
+    </packages>
+</image>

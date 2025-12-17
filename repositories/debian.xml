@@ -1,0 +1,16 @@
+<image>
+    <!-- Stable (Bookworm) for x86_64, i386, RPi and TF101 -->
+    <repository type="apt-deb" name="debian-bookworm" profiles="common_debian">
+        <source path="http://deb.debian.org/debian"/>
+    </repository>
+    <repository type="apt-deb" name="debian-security-bookworm" profiles="common_debian">
+        <source path="http://security.debian.org/debian-security"/>
+    </repository>
+
+    <!-- Unstable (Sid) for Odroid (Example of version differentiation) -->
+    <repository type="apt-deb" name="debian-sid" profiles="odroid">
+        <source path="http://deb.debian.org/debian" distribution="sid"/>
+    </repository>
+    <!-- Sid generally doesn't use security repo directly in the same way, but keeping structure similar if needed 
+         or just omit security for sid as it moves too fast. -->
+</image>

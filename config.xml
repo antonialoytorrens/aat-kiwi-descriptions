@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<image schemaversion="7.4" name="debian-live-config" displayname="Debian Live Config" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <description type="system">
+        <author>Antoni Aloy Torrens</author>
+        <contact>nodiscc@gmail.com</contact>
+        <specification>Debian Live Config (Kiwi-NG)</specification>
+    </description>
+
+    <!-- Shared Profiles -->
+    <xi:include href="includes/profiles.xml"/>
+
+    <!-- Debian/derivative Preferences -->
+    <preferences profiles="common_debian">
+        <version>1.0.0</version>
+        <packagemanager>apt</packagemanager>
+        <bootsplash-theme>debian</bootsplash-theme>
+        <bootloader-theme>debian</bootloader-theme>
+        <locale>ca_ES.UTF-8</locale>
+        <timezone>Europe/Madrid</timezone>
+        <keytable>us</keytable>
+    </preferences>
+
+    <!-- Alpine/pmOS Preferences -->
+    <preferences profiles="common_alpine">
+        <version>1.0.0</version>
+        <packagemanager>apk</packagemanager>
+        <locale>en_US.UTF-8</locale>
+        <timezone>UTC</timezone>
+        <keytable>us</keytable>
+    </preferences>
+
+    <!-- Components -->
+    <include from="this://./repositories/debian.xml"/>
+    <include from="this://./repositories/alpine.xml"/>
+    <include from="this://./repositories/pmos.xml"/>
+    
+    <include from="this://./components/base_debian.xml"/>
+    <include from="this://./components/base_alpine.xml"/>
+
+    <!-- Debian Package Lists -->
+    <include from="this://./components/debian/system.xml"/>
+    <include from="this://./components/debian/graphics.xml"/>
+    <include from="this://./components/debian/audio.xml"/>
+    <include from="this://./components/debian/video.xml"/>
+    <include from="this://./components/debian/games.xml"/>
+    <include from="this://./components/debian/office.xml"/>
+    <include from="this://./components/debian/utility.xml"/>
+    <include from="this://./components/debian/network.xml"/>
+    <include from="this://./components/debian/firmware.xml"/>
+
+    <!-- Platforms -->
+    <include from="this://./platforms/x86_64.xml"/>
+    <include from="this://./platforms/i386.xml"/>
+    <include from="this://./platforms/rpi.xml"/>
+    <include from="this://./platforms/odroid.xml"/>
+    <include from="this://./platforms/tf101.xml"/>
+
+</image>
