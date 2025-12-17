@@ -1,8 +1,11 @@
+<image></image>
+<!--
 <image>
-    <repository type="apk" name="alpine-edge" profiles="common_alpine">
+    <repository type="apk" alias="alpine-edge" profiles="common_alpine">
         <source path="http://dl-cdn.alpinelinux.org/alpine/edge/main"/>
     </repository>
-    <repository type="apk" name="alpine-edge-community" profiles="common_alpine">
+    <repository type="apk" alias="alpine-edge-community" profiles="common_alpine">
         <source path="http://dl-cdn.alpinelinux.org/alpine/edge/community"/>
     </repository>
 </image>
+-->

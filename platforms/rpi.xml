@@ -1,8 +1,7 @@
 <image>
 
     <preferences profiles="rpi">
-        <type image="oem" initrd_system="dracut" filesystem="ext4" bootloader="grub2" firmware="efi">
-            <boot-partition-size>256</boot-partition-size>
+        <type image="oem" initrd_system="dracut" filesystem="ext4" firmware="efi" bootpartsize="256">
             <oemconfig>
                 <oem-resize>true</oem-resize>
             </oemconfig>

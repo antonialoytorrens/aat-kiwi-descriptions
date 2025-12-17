@@ -7,7 +7,76 @@
     </description>
 
     <!-- Shared Profiles -->
-    <xi:include href="includes/profiles.xml"/>
+    <include from="this://./includes/profiles.xml"/>
+    <profiles>
+    <!-- Common Profiles -->
+    <profile name="common_debian" description="Common Debian Base Profile"/>
+    <profile name="common_alpine" description="Common Alpine Base Profile"/>
+
+    <!-- x86_64 Profiles -->
+    <profile name="x86_64" description="Standard x86_64 Image" arch="x86_64"/>
+    <profile name="x86_64_debian" description="Standard x86_64 Image (Debian)" arch="x86_64">
+        <requires profile="x86_64"/>
+        <requires profile="common_debian"/>
+    </profile>
+    <profile name="x86_64_alpine" description="Standard x86_64 Image (Alpine)" arch="x86_64">
+         <requires profile="x86_64"/>
+         <requires profile="common_alpine"/>
+    </profile>
+    <profile name="x86_64_pmos" description="Standard x86_64 Image (PostmarketOS)" arch="x86_64">
+         <requires profile="x86_64"/>
+        <requires profile="common_alpine"/>
+    </profile>
+
+    <!-- i386 Profiles -->
+    <profile name="i386" description="Standard i386 Image" arch="i686"/>
+    <profile name="i386_debian" description="Standard i386 Image (Debian)" arch="i686">
+        <requires profile="i386"/>
+        <requires profile="common_debian"/>
+    </profile>
+    <profile name="i386_alpine" description="Standard i386 Image (Alpine)" arch="i686">
+        <requires profile="i386"/>
+        <requires profile="common_alpine"/>
+    </profile>
+    <profile name="i386_pmos" description="Standard i386 Image (PostmarketOS)" arch="i686">
+        <requires profile="i386"/>
+        <requires profile="common_alpine"/>
+    </profile>
+
+    <!-- Raspberry Pi Profiles -->
+    <profile name="rpi" description="Raspberry Pi Image" arch="aarch64"/>
+    <profile name="rpi_debian" description="Raspberry Pi Image (Debian)" arch="aarch64">
+        <requires profile="rpi"/>
+        <requires profile="common_debian"/>
+    </profile>
+
+    <!-- Odroid U3 Profiles -->
+    <profile name="odroid" description="Odroid U3 Image" arch="armv7l"/>
+    <profile name="odroid_debian" description="Odroid U3 Image (Debian)" arch="armv7l">
+        <requires profile="odroid"/>
+        <requires profile="common_debian"/>
+    </profile>
+    <profile name="odroid_alpine" description="Odroid U3 Image (Alpine)" arch="armv7l">
+        <requires profile="odroid"/>
+        <requires profile="common_alpine"/>
+    </profile>
+    <profile name="odroid_pmos" description="Odroid U3 Image (PostmarketOS)" arch="armv7l">
+        <requires profile="odroid"/>
+        <requires profile="common_alpine"/>
+    </profile>
+
+    <!-- Asus TF101 Profiles -->
+    <profile name="tf101" description="Asus TF101 Image" arch="armv7l"/>
+    <profile name="tf101_debian" description="Asus TF101 Image (Debian)" arch="armv7l">
+        <requires profile="tf101"/>
+        <requires profile="common_debian"/>
+    </profile>
+     <profile name="tf101_pmos" description="Asus TF101 Image (PostmarketOS)" arch="armv7l">
+        <requires profile="tf101"/>
+        <requires profile="common_alpine"/>
+    </profile>
+</profiles>
+
 
     <!-- Debian/derivative Preferences -->
     <preferences profiles="common_debian">
@@ -15,25 +84,26 @@
         <packagemanager>apt</packagemanager>
         <bootsplash-theme>debian</bootsplash-theme>
         <bootloader-theme>debian</bootloader-theme>
-        <locale>ca_ES.UTF-8</locale>
+        <locale>ca_ES</locale>
         <timezone>Europe/Madrid</timezone>
-        <keytable>us</keytable>
+        <keytable>es-cat</keytable>
     </preferences>
 
     <!-- Alpine/pmOS Preferences -->
     <preferences profiles="common_alpine">
         <version>1.0.0</version>
         <packagemanager>apk</packagemanager>
-        <locale>en_US.UTF-8</locale>
-        <timezone>UTC</timezone>
-        <keytable>us</keytable>
+        <locale>ca_ES</locale>
+        <timezone>Europe/Madrid</timezone>
+        <keytable>es-cat</keytable>
     </preferences>
 
-    <!-- Components -->
+    <!-- Repositories -->
     <include from="this://./repositories/debian.xml"/>
     <include from="this://./repositories/alpine.xml"/>
     <include from="this://./repositories/pmos.xml"/>
-    
+
+    <!-- Components -->
     <include from="this://./components/base_debian.xml"/>
     <include from="this://./components/base_alpine.xml"/>
 

@@ -2,12 +2,14 @@
     <packages type="image" profiles="common_debian">
         <package name="acl"/>
         <package name="attr"/>
+        <package name="apt"/>
         <package name="bash"/>
         <package name="ca-certificates"/>
         <package name="coreutils"/>
         <package name="curl"/>
         <package name="dbus"/>
         <package name="dracut"/>
+        <package name="dracut-kiwi-oem-repart"/>
         <package name="e2fsprogs"/>
         <package name="iproute2"/>
         <package name="iputils-ping"/>
@@ -23,4 +25,5 @@
         <package name="vim"/>
         <package name="wget"/>
     </packages>
+    <packages type="bootstrap" />
 </image>
