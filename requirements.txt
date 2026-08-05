@@ -1,26 +1,6 @@
 # Kiwi-NG and Build Dependencies
 kiwi>=9.24.0
 
-# Testing Framework
-pytest>=7.4.0
-pytest-cov>=4.1.0
-pytest-xdist>=3.3.0
-
-# Linting Tools
-pylint>=3.0.0
-ruff>=0.1.0
-flake8>=6.1.0
-
-# Type Checking
-mypy>=1.5.0
-pyright>=1.1.0
-
-# Security Scanner
-bandit>=1.7.5
-
-# Code Formatting
-black>=23.7.0
-isort>=5.12.0
-autoflake>=2.2.0
-pyupgrade>=3.10.0
-pydocstringformatter>=0.7.3
+# Linting/formatting (shellcheck, xmllint) are system packages, not pip
+# packages - see `make lint`/`make format` (requires shellcheck and
+# libxml2-utils/xmllint to be installed).

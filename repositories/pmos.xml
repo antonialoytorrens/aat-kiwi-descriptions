@@ -1,8 +1,5 @@
-<image></image>
-<!--
 <image>
-    <repository type="apk" alias="postmarketos" profiles="x86_64_pmos,i386_pmos,odroid_pmos,tf101_pmos">
-        <source path="http://mirror.postmarketos.org/postmarketos/master"/>
+    <repository type="apk" alias="postmarketos" profiles="pmos_v26.06">
+        <source path="http://mirror.postmarketos.org/postmarketos/v26.06"/>
     </repository>
 </image>
--->

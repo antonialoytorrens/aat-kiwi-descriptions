@@ -1,0 +1,92 @@
+<image>
+    <packages type="image" profiles="common_debian">
+        <package name="acl"/>
+        <package name="attr"/>
+        <package name="apt"/>
+        <package name="bash"/>
+        <package name="ca-certificates"/>
+        <package name="coreutils"/>
+        <package name="curl"/>
+        <package name="dbus"/>
+        <package name="dracut"/>
+        <package name="dracut-kiwi-oem-repart"/>
+        <package name="e2fsprogs"/>
+        <package name="iproute2"/>
+        <package name="iputils-ping"/>
+        <package name="less"/>
+        <package name="locales"/>
+        <package name="net-tools"/>
+        <package name="openssh-server"/>
+        <package name="procps"/>
+        <package name="sudo"/>
+        <package name="systemd"/>
+        <package name="systemd-sysv"/>
+        <package name="util-linux"/>
+        <package name="vim"/>
+        <package name="wget"/>
+    </packages>
+    <packages type="bootstrap" />
+
+    <!-- Asus TF101 -->
+    <packages type="image" profiles="asus_tf101_debian">
+        <package name="linux-image-asus-tf101"/>
+        <package name="u-boot-asus-tf101"/>
+        <package name="u-boot-menu"/>
+    </packages>
+
+    <!-- Odroid U3 -->
+    <packages type="image" profiles="odroid_u3_debian">
+        <package name="linux-image-armmp"/>
+        <package name="u-boot-tools"/>
+    </packages>
+
+    <!-- PC i386 -->
+    <packages type="image" profiles="pc_i386_debian">
+        <package name="linux-image-686"/>
+        <package name="grub-pc"/>
+        <package name="grub-efi-ia32-bin"/>
+
+        <!-- Firmware -->
+        <package name="firmware-linux-free"/>
+        <package name="firmware-realtek"/>
+        <package name="firmware-atheros"/>
+        <package name="firmware-b43-installer"/>
+        <package name="firmware-brcm80211"/>
+        <package name="firmware-ipw2x00"/>
+        <package name="firmware-iwlwifi"/>
+        <package name="amd64-microcode"/>
+        <package name="intel-microcode"/>
+        <package name="broadcom-sta-dkms"/>
+        <package name="broadcom-sta-source"/>
+        <package name="broadcom-sta-common"/>
+    </packages>
+
+    <!-- PC x86_64 -->
+    <packages type="image" profiles="pc_x86_64_debian">
+        <package name="linux-image-amd64"/>
+        <package name="grub-pc"/>
+        <package name="grub-efi-amd64-bin"/>
+
+        <!-- Firmware -->
+        <package name="firmware-linux-free"/>
+        <package name="firmware-realtek"/>
+        <package name="firmware-atheros"/>
+        <package name="firmware-b43-installer"/>
+        <package name="firmware-brcm80211"/>
+        <package name="firmware-ipw2x00"/>
+        <package name="firmware-iwlwifi"/>
+        <package name="amd64-microcode"/>
+        <package name="intel-microcode"/>
+        <package name="broadcom-sta-dkms"/>
+        <package name="broadcom-sta-source"/>
+        <package name="broadcom-sta-common"/>
+    </packages>
+
+    <!-- Raspberry Pi -->
+    <packages type="image" profiles="rpi_debian">
+        <package name="linux-image-arm64"/>
+        <package name="raspi-firmware"/>
+        <package name="u-boot-rpi"/>
+        <package name="u-boot-menu"/>
+    </packages>
+</image>

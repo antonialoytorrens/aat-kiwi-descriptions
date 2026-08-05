@@ -1,0 +1,36 @@
+<image>
+    <packages type="image" profiles="common_alpine">
+        <package name="alpine-base"/>
+        <package name="bash"/>
+        <package name="ca-certificates"/>
+        <package name="curl"/>
+        <package name="e2fsprogs"/>
+        <package name="iproute2"/>
+        <package name="openssh"/>
+        <package name="util-linux"/>
+        <package name="vim"/>
+        <package name="wget"/>
+        <!-- OpenRC handled by alpine-base usually, or explicitly: -->
+        <package name="openrc"/>
+    </packages>
+
+    <!-- Odroid U3 -->
+    <packages type="image" profiles="odroid_u3_alpine">
+        <package name="linux-lts"/>
+        <package name="uboot-tools"/>
+    </packages>
+
+    <!-- PC i386 -->
+    <packages type="image" profiles="pc_i386_alpine">
+        <package name="linux-lts"/>
+        <package name="grub"/>
+        <package name="grub-efi"/>
+    </packages>
+
+    <!-- PC x86_64 -->
+    <packages type="image" profiles="pc_x86_64_alpine">
+        <package name="linux-lts"/>
+        <package name="grub"/>
+        <package name="grub-efi"/>
+    </packages>
+</image>

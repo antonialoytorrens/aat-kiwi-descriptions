@@ -1,11 +1,8 @@
-<image></image>
-<!--
 <image>
-    <repository type="apk" alias="alpine-edge" profiles="common_alpine">
-        <source path="http://dl-cdn.alpinelinux.org/alpine/edge/main"/>
+    <repository type="apk" alias="alpine-3.24" profiles="alpine_v3.24">
+        <source path="http://dl-cdn.alpinelinux.org/alpine/v3.24/main"/>
     </repository>
-    <repository type="apk" alias="alpine-edge-community" profiles="common_alpine">
-        <source path="http://dl-cdn.alpinelinux.org/alpine/edge/community"/>
+    <repository type="apk" alias="alpine-3.24-community" profiles="alpine_v3.24">
+        <source path="http://dl-cdn.alpinelinux.org/alpine/v3.24/community"/>
     </repository>
 </image>
--->

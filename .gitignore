@@ -1,21 +1,29 @@
-.venv/
-doc/html/
-/binary/
-/cache/
-/chroot/
-/.build/
-build.log
-chroot.files
-chroot.packages.install
-chroot.packages.live
-config/binary
-config/bootstrap
-config/chroot
-config/common
-*.duc-index
-iso/
-.coverage
-__pycache__
-.ruff_cache
-.pytest_cache
-.mypy_cache
+# kiwi-ng build output
+/build/
+
+__pycache__/
+
+# Device-specific tweaks (board support package), fetched/merged by
+# scripts/fetch_bsp.py and scripts/apply_bsp.py - see platforms/PLATFORMS.md.
+# The clone itself, plus the merged output dirs kiwi discovers (named
+# after the 19 profiles in includes/profiles.xml) - never committed here.
+/bsp/
+/common_debian
+/common_alpine
+/pc_x86_64
+/pc_x86_64_debian
+/pc_x86_64_alpine
+/pc_x86_64_pmos
+/pc_i386
+/pc_i386_debian
+/pc_i386_alpine
+/pc_i386_pmos
+/rpi
+/rpi_debian
+/odroid_u3
+/odroid_u3_debian
+/odroid_u3_alpine
+/odroid_u3_pmos
+/asus_tf101
+/asus_tf101_debian
+/asus_tf101_pmos

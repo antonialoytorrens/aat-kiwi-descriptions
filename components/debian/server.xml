@@ -1,0 +1,4 @@
+<image>
+    <!-- TODO: Debian-specific server-tier packages (profiles="server") -->
+    <!-- e.g. monitoring agents, cloud-init -->
+</image>

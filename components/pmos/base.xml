@@ -1,0 +1,25 @@
+<image>
+    <!-- Asus TF101 -->
+    <packages type="image" profiles="asus_tf101_pmos">
+        <package name="linux-asus-tf101"/>
+        <package name="postmarketos-base"/>
+    </packages>
+
+    <!-- Odroid U3 -->
+    <packages type="image" profiles="odroid_u3_pmos">
+        <package name="linux-odroid-u2"/> <!-- Example specific kernel if available in pmos -->
+        <package name="postmarketos-base"/>
+    </packages>
+
+    <!-- PC i386 -->
+    <packages type="image" profiles="pc_i386_pmos">
+        <package name="linux-lts"/>
+        <package name="postmarketos-base"/>
+    </packages>
+
+    <!-- PC x86_64 -->
+    <packages type="image" profiles="pc_x86_64_pmos">
+        <package name="linux-lts"/>
+        <package name="postmarketos-base"/>
+    </packages>
+</image>

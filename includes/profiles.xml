@@ -1,35 +1,46 @@
+<image>
 <profiles>
     <!-- Common Profiles -->
     <profile name="common_debian" description="Common Debian Base Profile"/>
     <profile name="common_alpine" description="Common Alpine Base Profile"/>
 
-    <!-- x86_64 Profiles -->
-    <profile name="x86_64" description="Standard x86_64 Image" arch="x86_64"/>
-    <profile name="x86_64_debian" description="Standard x86_64 Image (Debian)" arch="x86_64">
-        <requires profile="x86_64"/>
+    <!-- Tier Profiles - select alongside a platform_distro profile -->
+    <profile name="workstation" description="Workstation tier - full desktop environment"/>
+    <profile name="server" description="Server tier - headless, no desktop"/>
+
+    <!-- Release Profiles - select alongside a platform_distro profile -->
+    <profile name="debian_bookworm" description="Debian Bookworm repositories"/>
+    <profile name="debian_trixie" description="Debian Trixie repositories"/>
+    <profile name="alpine_v3.24" description="Alpine v3.24 repositories"/>
+    <profile name="pmos_v26.06" description="postmarketOS v26.06 repositories"/>
+
+    <!-- PC x86_64 Profiles -->
+    <profile name="pc_x86_64" description="Standard PC x86_64 Image" arch="x86_64"/>
+    <profile name="pc_x86_64_debian" description="Standard PC x86_64 Image (Debian)" arch="x86_64">
+        <requires profile="pc_x86_64"/>
         <requires profile="common_debian"/>
     </profile>
-    <profile name="x86_64_alpine" description="Standard x86_64 Image (Alpine)" arch="x86_64">
-         <requires profile="x86_64"/>
+    <profile name="pc_x86_64_alpine" description="Standard PC x86_64 Image (Alpine)" arch="x86_64">
+         <requires profile="pc_x86_64"/>
          <requires profile="common_alpine"/>
     </profile>
-    <profile name="x86_64_pmos" description="Standard x86_64 Image (PostmarketOS)" arch="x86_64">
-         <requires profile="x86_64"/>
+    <profile name="pc_x86_64_pmos" description="Standard PC x86_64 Image (PostmarketOS)" arch="x86_64">
+         <requires profile="pc_x86_64"/>
         <requires profile="common_alpine"/>
     </profile>
 
-    <!-- i386 Profiles -->
-    <profile name="i386" description="Standard i386 Image" arch="i686"/>
-    <profile name="i386_debian" description="Standard i386 Image (Debian)" arch="i686">
-        <requires profile="i386"/>
+    <!-- PC i386 Profiles -->
+    <profile name="pc_i386" description="Standard PC i386 Image" arch="i686"/>
+    <profile name="pc_i386_debian" description="Standard PC i386 Image (Debian)" arch="i686">
+        <requires profile="pc_i386"/>
         <requires profile="common_debian"/>
     </profile>
-    <profile name="i386_alpine" description="Standard i386 Image (Alpine)" arch="i686">
-        <requires profile="i386"/>
+    <profile name="pc_i386_alpine" description="Standard PC i386 Image (Alpine)" arch="i686">
+        <requires profile="pc_i386"/>
         <requires profile="common_alpine"/>
     </profile>
-    <profile name="i386_pmos" description="Standard i386 Image (PostmarketOS)" arch="i686">
-        <requires profile="i386"/>
+    <profile name="pc_i386_pmos" description="Standard PC i386 Image (PostmarketOS)" arch="i686">
+        <requires profile="pc_i386"/>
         <requires profile="common_alpine"/>
     </profile>
 
@@ -41,28 +52,29 @@
     </profile>
 
     <!-- Odroid U3 Profiles -->
-    <profile name="odroid" description="Odroid U3 Image" arch="arm"/>
-    <profile name="odroid_debian" description="Odroid U3 Image (Debian)" arch="arm">
-        <requires profile="odroid"/>
+    <profile name="odroid_u3" description="Odroid U3 Image" arch="armv7l"/>
+    <profile name="odroid_u3_debian" description="Odroid U3 Image (Debian)" arch="armv7l">
+        <requires profile="odroid_u3"/>
         <requires profile="common_debian"/>
     </profile>
-    <profile name="odroid_alpine" description="Odroid U3 Image (Alpine)" arch="arm">
-        <requires profile="odroid"/>
+    <profile name="odroid_u3_alpine" description="Odroid U3 Image (Alpine)" arch="armv7l">
+        <requires profile="odroid_u3"/>
         <requires profile="common_alpine"/>
     </profile>
-    <profile name="odroid_pmos" description="Odroid U3 Image (PostmarketOS)" arch="arm">
-        <requires profile="odroid"/>
+    <profile name="odroid_u3_pmos" description="Odroid U3 Image (PostmarketOS)" arch="armv7l">
+        <requires profile="odroid_u3"/>
         <requires profile="common_alpine"/>
     </profile>
 
     <!-- Asus TF101 Profiles -->
-    <profile name="tf101" description="Asus TF101 Image" arch="arm"/>
-    <profile name="tf101_debian" description="Asus TF101 Image (Debian)" arch="arm">
-        <requires profile="tf101"/>
+    <profile name="asus_tf101" description="Asus TF101 Image" arch="armv7l"/>
+    <profile name="asus_tf101_debian" description="Asus TF101 Image (Debian)" arch="armv7l">
+        <requires profile="asus_tf101"/>
         <requires profile="common_debian"/>
     </profile>
-     <profile name="tf101_pmos" description="Asus TF101 Image (PostmarketOS)" arch="arm">
-        <requires profile="tf101"/>
+     <profile name="asus_tf101_pmos" description="Asus TF101 Image (PostmarketOS)" arch="armv7l">
+        <requires profile="asus_tf101"/>
         <requires profile="common_alpine"/>
     </profile>
 </profiles>
+</image>

@@ -1,5 +1,5 @@
 <image>
-
+    <!-- Raspberry Pi -->
     <preferences profiles="rpi">
         <type image="oem" initrd_system="dracut" filesystem="ext4" firmware="efi" bootpartsize="256">
             <oemconfig>
@@ -7,11 +7,4 @@
             </oemconfig>
         </type>
     </preferences>
-
-    <packages type="image" profiles="rpi_debian">
-        <package name="linux-image-arm64"/>
-        <package name="raspi-firmware"/>
-        <package name="u-boot-rpi"/>
-        <package name="u-boot-menu"/>
-    </packages>
 </image>
