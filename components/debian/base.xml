@@ -42,8 +42,8 @@
     <!-- Minix NEO X8-H -->
     <packages type="image" profiles="minix-neox8h_debian">
         <package name="linux-image-m8x"/>
-        <package name="firmware-minix-neox8h"/>
         <package name="u-boot-tools"/>
+	<!-- Firmware is included in bsp repository -->
     </packages>
 
     <!-- Odroid U3 -->

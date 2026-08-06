@@ -22,6 +22,12 @@ help:
 	@echo "  Anything else is forwarded into the container's own Makefile, e.g.:"
 	@echo "  <platform> DISTRO=...   - make <platform> DISTRO=... [TIER=...] [RELEASE=...]"
 	@echo "  lint / format / clean   - runs the same target inside the container"
+	@echo ""
+	@echo "  Foreign-arch platforms (e.g. minix-neox8h, odroid-u3, asus-tf101) run"
+	@echo "  the builder container itself under QEMU emulation, matching the"
+	@echo "  platform's arch. This requires the Docker host to have QEMU binfmt_misc"
+	@echo "  interpreters registered once, e.g.:"
+	@echo "    docker run --privileged --rm tonistiigi/binfmt --install all"
 
 docker-build:
 	$(COMPOSE) build
@@ -33,7 +39,15 @@ docker-down:
 	$(COMPOSE) down -v
 
 %: FORCE
-	$(COMPOSE) run --rm $(SERVICE) make $@ \
+	@arch=$$(grep "name=\"$@\"" includes/profiles.xml | grep -o 'arch="[^"]*"' | cut -d'"' -f2); \
+	case "$$arch" in \
+		x86_64) platform=linux/amd64 ;; \
+		i686|i586) platform=linux/386 ;; \
+		armv7l) platform=linux/arm/v7 ;; \
+		aarch64) platform=linux/arm64 ;; \
+		*) platform=linux/amd64 ;; \
+	esac; \
+	DOCKER_PLATFORM=$$platform $(COMPOSE) run --rm $(SERVICE) make $@ \
 		$(if $(DISTRO),DISTRO=$(DISTRO)) \
 		$(if $(TIER),TIER=$(TIER)) \
 		$(if $(RELEASE),RELEASE=$(RELEASE))

@@ -18,6 +18,10 @@
     <repository type="apt-deb" distribution="trixie" components="main" repository_gpgcheck="false" profiles="debian_13">
         <source path="http://dports.antonialoytorrens.com/aat-kiwi-debian-repository/debian"/>
     </repository>
+    <!-- Necessary for kernel packages -->
+    <repository type="apt-deb" distribution="trixie" components="main" repository_gpgcheck="false" profiles="debian_13">
+        <source path="http://dports.antonialoytorrens.com/aat-debkernel-repository/debian"/>
+    </repository>
 
     <!-- 14 (Forky) -->
     <repository type="apt-deb" distribution="forky" components="main contrib non-free non-free-firmware" repository_gpgcheck="false" profiles="debian_14">
