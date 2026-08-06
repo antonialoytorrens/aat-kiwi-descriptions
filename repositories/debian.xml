@@ -1,17 +1,29 @@
 <image>
-    <!-- Bookworm -->
-    <repository type="apt-deb" distribution="bookworm" components="main contrib non-free" repository_gpgcheck="false" profiles="debian_bookworm">
+    <!-- 12 (Bookworm) -->
+    <!--<repository type="apt-deb" distribution="bookworm" components="main contrib non-free non-free-firmware" repository_gpgcheck="false" profiles="debian_12">
         <source path="http://deb.debian.org/debian"/>
     </repository>
-    <repository type="apt-deb" distribution="bookworm" components="main contrib non-free" repository_gpgcheck="false" profiles="debian_bookworm">
+    <repository type="apt-deb" distribution="bookworm-security" components="main contrib non-free non-free-firmware" repository_gpgcheck="false" profiles="debian_12">
+        <source path="http://security.debian.org/debian-security"/>
+    </repository>-->
+
+    <!-- 13 (Trixie) -->
+    <repository type="apt-deb" distribution="trixie" components="main contrib non-free non-free-firmware" repository_gpgcheck="false" profiles="debian_13">
+        <source path="http://deb.debian.org/debian"/>
+    </repository>
+    <repository type="apt-deb" distribution="trixie-security" components="main contrib non-free non-free-firmware" repository_gpgcheck="false" profiles="debian_13">
         <source path="http://security.debian.org/debian-security"/>
     </repository>
+    <!-- Necessary for kiwi packages -->
+    <repository type="apt-deb" distribution="trixie" components="main" repository_gpgcheck="false" profiles="debian_13">
+        <source path="http://dports.antonialoytorrens.com/aat-kiwi-debian-repository/debian"/>
+    </repository>
 
-    <!-- Trixie -->
-    <repository type="apt-deb" distribution="trixie" components="main contrib non-free" repository_gpgcheck="false" profiles="debian_trixie">
+    <!-- 14 (Forky) -->
+    <repository type="apt-deb" distribution="forky" components="main contrib non-free non-free-firmware" repository_gpgcheck="false" profiles="debian_14">
         <source path="http://deb.debian.org/debian"/>
     </repository>
-    <repository type="apt-deb" distribution="trixie" components="main contrib non-free" repository_gpgcheck="false" profiles="debian_trixie">
+    <repository type="apt-deb" distribution="forky-security" components="main contrib non-free non-free-firmware" repository_gpgcheck="false" profiles="debian_14">
         <source path="http://security.debian.org/debian-security"/>
     </repository>
 </image>

@@ -24,13 +24,15 @@ def main() -> int:
     dest = Path(args.dest)
     try:
         if (dest / ".git").is_dir():
+            print("Updating bsp repository...")
             subprocess.run(
-                ["git", "-C", str(dest), "pull", "--ff-only", "origin", args.branch],
+                ["git", "-C", str(dest), "pull", "-qq", "--ff-only", "origin", args.branch],
                 check=True, env=GIT_ENV,
             )
         else:
+            print("Cloning bsp repository...")
             subprocess.run(
-                ["git", "clone", "--branch", args.branch, args.repo, str(dest)],
+                ["git", "clone", "-qq", "--branch", args.branch, args.repo, str(dest)],
                 check=True, env=GIT_ENV,
             )
     except (subprocess.CalledProcessError, OSError) as error:

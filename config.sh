@@ -21,7 +21,14 @@ ln -sf /usr/share/zoneinfo/Europe/Madrid /etc/localtime
 echo "Configuring Users..."
 useradd -m -s /bin/bash user
 echo "user:live" | chpasswd
-usermod -aG sudo,plugdev,audio,video,netdev user
+
+# Groups
+for g in cdrom floppy sudo audio dip video plugdev netdev bluetooth lpadmin scanner; do
+    groupadd -f "$g"
+done
+
+# Picked from standard debian user (groups $(whoami) )
+usermod -aG cdrom,floppy,sudo,audio,dip,video,plugdev,netdev,bluetooth,lpadmin,scanner user
 
 # Network
 echo "Configuring Network..."

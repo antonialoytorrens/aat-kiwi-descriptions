@@ -9,8 +9,8 @@
     <profile name="server" description="Server tier - headless, no desktop"/>
 
     <!-- Release Profiles - select alongside a platform_distro profile -->
-    <profile name="debian_bookworm" description="Debian Bookworm repositories"/>
-    <profile name="debian_trixie" description="Debian Trixie repositories"/>
+    <profile name="debian_12" description="Debian 12 (Bookworm) repositories"/>
+    <profile name="debian_13" description="Debian 13 (Trixie) repositories"/>
     <profile name="alpine_v3.24" description="Alpine v3.24 repositories"/>
     <profile name="pmos_v26.06" description="postmarketOS v26.06 repositories"/>
 

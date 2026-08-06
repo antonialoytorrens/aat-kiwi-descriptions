@@ -15,18 +15,18 @@
         <packagemanager>apt</packagemanager>
         <bootsplash-theme>debian</bootsplash-theme>
         <bootloader-theme>debian</bootloader-theme>
-        <locale>ca_ES</locale>
+        <!--<locale>ca_ES</locale>
         <timezone>Europe/Madrid</timezone>
-        <keytable>es-cat</keytable>
+        <keytable>es-cat</keytable>-->
     </preferences>
 
     <!-- Alpine/pmOS Preferences -->
     <preferences profiles="common_alpine">
         <version>1.0.0</version>
         <packagemanager>apk</packagemanager>
-        <locale>ca_ES</locale>
+        <!--<locale>ca_ES</locale>
         <timezone>Europe/Madrid</timezone>
-        <keytable>es-cat</keytable>
+        <keytable>es-cat</keytable>-->
     </preferences>
 
     <!-- Repositories -->

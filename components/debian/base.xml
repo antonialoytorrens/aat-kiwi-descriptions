@@ -9,13 +9,14 @@
         <package name="curl"/>
         <package name="dbus"/>
         <package name="dracut"/>
-        <package name="dracut-kiwi-oem-repart"/>
+        <package name="kiwi-dracut-oem-repart"/>
         <package name="e2fsprogs"/>
         <package name="iproute2"/>
         <package name="iputils-ping"/>
         <package name="less"/>
         <package name="locales"/>
         <package name="net-tools"/>
+        <package name="network-manager"/>
         <package name="openssh-server"/>
         <package name="procps"/>
         <package name="sudo"/>
@@ -24,6 +25,10 @@
         <package name="util-linux"/>
         <package name="vim"/>
         <package name="wget"/>
+
+        <!-- Non-essential, but very useful -->
+        <package name="hw-probe"/>
+        <package name="fastfetch"/>
     </packages>
     <packages type="bootstrap" />
 
@@ -47,18 +52,18 @@
         <package name="grub-efi-ia32-bin"/>
 
         <!-- Firmware -->
-        <package name="firmware-linux-free"/>
-        <package name="firmware-realtek"/>
+        <package name="firmware-linux"/>
+        <!--<package name="firmware-realtek"/>
         <package name="firmware-atheros"/>
         <package name="firmware-b43-installer"/>
         <package name="firmware-brcm80211"/>
         <package name="firmware-ipw2x00"/>
-        <package name="firmware-iwlwifi"/>
+        <package name="firmware-iwlwifi"/>-->
         <package name="amd64-microcode"/>
         <package name="intel-microcode"/>
-        <package name="broadcom-sta-dkms"/>
+        <!--<package name="broadcom-sta-dkms"/>
         <package name="broadcom-sta-source"/>
-        <package name="broadcom-sta-common"/>
+        <package name="broadcom-sta-common"/>-->
     </packages>
 
     <!-- PC x86_64 -->
@@ -68,18 +73,18 @@
         <package name="grub-efi-amd64-bin"/>
 
         <!-- Firmware -->
-        <package name="firmware-linux-free"/>
-        <package name="firmware-realtek"/>
+        <package name="firmware-linux"/>
+        <!--<package name="firmware-realtek"/>
         <package name="firmware-atheros"/>
         <package name="firmware-b43-installer"/>
         <package name="firmware-brcm80211"/>
         <package name="firmware-ipw2x00"/>
-        <package name="firmware-iwlwifi"/>
+        <package name="firmware-iwlwifi"/>-->
         <package name="amd64-microcode"/>
         <package name="intel-microcode"/>
-        <package name="broadcom-sta-dkms"/>
+        <!--<package name="broadcom-sta-dkms"/>
         <package name="broadcom-sta-source"/>
-        <package name="broadcom-sta-common"/>
+        <package name="broadcom-sta-common"/>-->
     </packages>
 
     <!-- Raspberry Pi -->
