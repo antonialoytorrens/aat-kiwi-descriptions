@@ -53,4 +53,12 @@ if [ -d /boot/grub/themes/live-theme ]; then
     update-grub || true
 fi
 
+# Device-specific post-install hook, provided by the BSP overlay (if any).
+# Not part of the final image, so remove it once it has run.
+if [ -f /postinst.sh ]; then
+    echo "Running device-specific postinst.sh..."
+    bash /postinst.sh
+    rm -f /postinst.sh
+fi
+
 exit 0

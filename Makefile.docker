@@ -1,0 +1,41 @@
+#!/usr/bin/make -f
+
+SHELL := /bin/bash
+COMPOSE := docker compose
+SERVICE := builder
+
+.PHONY: all help docker-build docker-shell docker-down FORCE
+
+# Explicit no-op rule so GNU Make's own makefile-remake check doesn't
+# match this file's own name against the catch-all %: pattern below.
+Makefile.docker: ;
+
+all: help
+
+help:
+	@echo "Usage: make -f Makefile.docker <target> [ARGS...]"
+	@echo ""
+	@echo "  docker-build            - Build (or rebuild) the builder image"
+	@echo "  docker-shell            - Open an interactive shell in the builder container"
+	@echo "  docker-down             - Remove containers and the kiwi package-cache volume"
+	@echo ""
+	@echo "  Anything else is forwarded into the container's own Makefile, e.g.:"
+	@echo "  <platform> DISTRO=...   - make <platform> DISTRO=... [TIER=...] [RELEASE=...]"
+	@echo "  lint / format / clean   - runs the same target inside the container"
+
+docker-build:
+	$(COMPOSE) build
+
+docker-shell:
+	$(COMPOSE) run --rm $(SERVICE) bash
+
+docker-down:
+	$(COMPOSE) down -v
+
+%: FORCE
+	$(COMPOSE) run --rm $(SERVICE) make $@ \
+		$(if $(DISTRO),DISTRO=$(DISTRO)) \
+		$(if $(TIER),TIER=$(TIER)) \
+		$(if $(RELEASE),RELEASE=$(RELEASE))
+
+FORCE:

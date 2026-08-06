@@ -1,0 +1,12 @@
+services:
+  builder:
+    build: .
+    image: aat-kiwi-descriptions-builder
+    privileged: true
+    volumes:
+      - .:/workspace
+      - kiwi-cache:/var/cache/kiwi
+    working_dir: /workspace
+
+volumes:
+  kiwi-cache:

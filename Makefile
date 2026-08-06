@@ -13,6 +13,7 @@ CONFIG_DIR = .
 DISTRO  ?=
 TIER    ?= $(DEFAULT_TIER)
 RELEASE ?=
+SUDO    := $(shell [ "$$(id -u)" = 0 ] && echo "" || echo "sudo")
 
 # DISTROS, sourced from keys of RELEASES in settings.cfg
 empty :=
@@ -55,8 +56,8 @@ help:
 	@echo "  bsp-pull       - Fetch/update device-specific tweaks (on demand; not run automatically)"
 
 clean:
-	sudo rm -rf /var/cache/kiwi
-	sudo rm -rf $(BUILD_DIR)
+	$(SUDO) rm -rf /var/cache/kiwi/*
+	$(SUDO) rm -rf $(BUILD_DIR)
 
 # Board Support Packaging (can be empty for specific platforms); run on demand, not automatically
 bsp-pull:
@@ -86,8 +87,8 @@ $(PLATFORMS):
 	echo "Building profile: $$build_profile (arch: $${arch:-host})"; \
 	mkdir -p "$$outdir"; \
 	# This directory shall be created, otherwise debian keyring fails \
-	sudo mkdir -p /var/cache/kiwi/apt-get/trusted.gpg.d; \
-	sudo kiwi-ng $${arch:+--target-arch "$$arch"} --profile "$$profile" --profile "$(TIER)" --profile "$(DISTRO)_$$release" system build --description $(CONFIG_DIR) --target-dir "$$outdir"
+	$(SUDO) mkdir -p /var/cache/kiwi/apt-get/trusted.gpg.d; \
+	$(SUDO) kiwi-ng $${arch:+--target-arch "$$arch"} --profile "$$profile" --profile "$(TIER)" --profile "$(DISTRO)_$$release" system build --description $(CONFIG_DIR) --target-dir "$$outdir"
 
 lint:
 	@echo "Linting XML descriptions (xmllint)..."
