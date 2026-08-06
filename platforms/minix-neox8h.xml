@@ -1,0 +1,10 @@
+<image>
+    <!-- Minix NEO X8-H -->
+    <preferences profiles="minix-neox8h">
+        <type image="oem" initrd_system="dracut" filesystem="ext4" bootpartition="true" bootfilesystem="fat16" bootpartsize="256">
+            <oemconfig>
+                <oem-resize>true</oem-resize>
+            </oemconfig>
+        </type>
+    </preferences>
+</image>

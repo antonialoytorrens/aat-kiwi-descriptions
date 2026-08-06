@@ -33,20 +33,26 @@
     <packages type="bootstrap" />
 
     <!-- Asus TF101 -->
-    <packages type="image" profiles="asus_tf101_debian">
+    <packages type="image" profiles="asus-tf101_debian">
         <package name="linux-image-asus-tf101"/>
         <package name="u-boot-asus-tf101"/>
         <package name="u-boot-menu"/>
     </packages>
 
+    <!-- Minix NEO X8-H -->
+    <packages type="image" profiles="minix-neox8h_debian">
+        <package name="linux-image-m8x"/>
+        <package name="firmware-minix-neox8h"/>
+    </packages>
+
     <!-- Odroid U3 -->
-    <packages type="image" profiles="odroid_u3_debian">
+    <packages type="image" profiles="odroid-u3_debian">
         <package name="linux-image-armmp"/>
         <package name="u-boot-tools"/>
     </packages>
 
     <!-- PC i386 -->
-    <packages type="image" profiles="pc_i386_debian">
+    <packages type="image" profiles="pc-i386_debian">
         <package name="linux-image-686"/>
         <package name="grub-pc"/>
         <package name="grub-efi-ia32-bin"/>
@@ -67,7 +73,7 @@
     </packages>
 
     <!-- PC x86_64 -->
-    <packages type="image" profiles="pc_x86_64_debian">
+    <packages type="image" profiles="pc-x86_64_debian">
         <package name="linux-image-amd64"/>
         <package name="grub-pc"/>
         <package name="grub-efi-amd64-bin"/>
@@ -85,13 +91,5 @@
         <!--<package name="broadcom-sta-dkms"/>
         <package name="broadcom-sta-source"/>
         <package name="broadcom-sta-common"/>-->
-    </packages>
-
-    <!-- Raspberry Pi -->
-    <packages type="image" profiles="rpi_debian">
-        <package name="linux-image-arm64"/>
-        <package name="raspi-firmware"/>
-        <package name="u-boot-rpi"/>
-        <package name="u-boot-menu"/>
     </packages>
 </image>

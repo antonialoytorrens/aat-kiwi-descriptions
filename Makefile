@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 
 # Usage: make <platform> DISTRO=<distro> TIER=<workstation|server> [RELEASE=<release>]
-# Example: make pc_x86_64 DISTRO=debian TIER=workstation
+# Example: make pc-x86_64 DISTRO=debian TIER=workstation
 
 SHELL := /bin/bash
 
@@ -34,7 +34,7 @@ all: help
 
 help:
 	@echo "Usage: make <platform> DISTRO=<$(DISTRO_ALT)> TIER=<workstation|server> [RELEASE=<release>]"
-	@echo "Example: make asus_tf101 DISTRO=debian TIER=workstation"
+	@echo "Example: make asus-tf101 DISTRO=debian TIER=workstation"
 	@echo ""
 	@echo "Available platforms and their distros:"
 	@for p in $(PLATFORMS); do \

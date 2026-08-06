@@ -15,66 +15,66 @@
     <profile name="pmos_v26.06" description="postmarketOS v26.06 repositories"/>
 
     <!-- PC x86_64 Profiles -->
-    <profile name="pc_x86_64" description="Standard PC x86_64 Image" arch="x86_64"/>
-    <profile name="pc_x86_64_debian" description="Standard PC x86_64 Image (Debian)" arch="x86_64">
-        <requires profile="pc_x86_64"/>
+    <profile name="pc-x86_64" description="Standard PC x86_64 Image" arch="x86_64"/>
+    <profile name="pc-x86_64_debian" description="Standard PC x86_64 Image (Debian)" arch="x86_64">
+        <requires profile="pc-x86_64"/>
         <requires profile="common_debian"/>
     </profile>
-    <profile name="pc_x86_64_alpine" description="Standard PC x86_64 Image (Alpine)" arch="x86_64">
-         <requires profile="pc_x86_64"/>
+    <profile name="pc-x86_64_alpine" description="Standard PC x86_64 Image (Alpine)" arch="x86_64">
+         <requires profile="pc-x86_64"/>
          <requires profile="common_alpine"/>
     </profile>
-    <profile name="pc_x86_64_pmos" description="Standard PC x86_64 Image (PostmarketOS)" arch="x86_64">
-         <requires profile="pc_x86_64"/>
+    <profile name="pc-x86_64_pmos" description="Standard PC x86_64 Image (PostmarketOS)" arch="x86_64">
+         <requires profile="pc-x86_64"/>
         <requires profile="common_alpine"/>
     </profile>
 
     <!-- PC i386 Profiles -->
-    <profile name="pc_i386" description="Standard PC i386 Image" arch="i686"/>
-    <profile name="pc_i386_debian" description="Standard PC i386 Image (Debian)" arch="i686">
-        <requires profile="pc_i386"/>
+    <profile name="pc-i386" description="Standard PC i386 Image" arch="i686"/>
+    <profile name="pc-i386_debian" description="Standard PC i386 Image (Debian)" arch="i686">
+        <requires profile="pc-i386"/>
         <requires profile="common_debian"/>
     </profile>
-    <profile name="pc_i386_alpine" description="Standard PC i386 Image (Alpine)" arch="i686">
-        <requires profile="pc_i386"/>
+    <profile name="pc-i386_alpine" description="Standard PC i386 Image (Alpine)" arch="i686">
+        <requires profile="pc-i386"/>
         <requires profile="common_alpine"/>
     </profile>
-    <profile name="pc_i386_pmos" description="Standard PC i386 Image (PostmarketOS)" arch="i686">
-        <requires profile="pc_i386"/>
+    <profile name="pc-i386_pmos" description="Standard PC i386 Image (PostmarketOS)" arch="i686">
+        <requires profile="pc-i386"/>
         <requires profile="common_alpine"/>
-    </profile>
-
-    <!-- Raspberry Pi Profiles -->
-    <profile name="rpi" description="Raspberry Pi Image" arch="aarch64"/>
-    <profile name="rpi_debian" description="Raspberry Pi Image (Debian)" arch="aarch64">
-        <requires profile="rpi"/>
-        <requires profile="common_debian"/>
     </profile>
 
     <!-- Odroid U3 Profiles -->
-    <profile name="odroid_u3" description="Odroid U3 Image" arch="armv7l"/>
-    <profile name="odroid_u3_debian" description="Odroid U3 Image (Debian)" arch="armv7l">
-        <requires profile="odroid_u3"/>
+    <profile name="odroid-u3" description="Odroid U3 Image" arch="armv7l"/>
+    <profile name="odroid-u3_debian" description="Odroid U3 Image (Debian)" arch="armv7l">
+        <requires profile="odroid-u3"/>
         <requires profile="common_debian"/>
     </profile>
-    <profile name="odroid_u3_alpine" description="Odroid U3 Image (Alpine)" arch="armv7l">
-        <requires profile="odroid_u3"/>
+    <profile name="odroid-u3_alpine" description="Odroid U3 Image (Alpine)" arch="armv7l">
+        <requires profile="odroid-u3"/>
         <requires profile="common_alpine"/>
     </profile>
-    <profile name="odroid_u3_pmos" description="Odroid U3 Image (PostmarketOS)" arch="armv7l">
-        <requires profile="odroid_u3"/>
+    <profile name="odroid-u3_pmos" description="Odroid U3 Image (PostmarketOS)" arch="armv7l">
+        <requires profile="odroid-u3"/>
         <requires profile="common_alpine"/>
     </profile>
 
     <!-- Asus TF101 Profiles -->
-    <profile name="asus_tf101" description="Asus TF101 Image" arch="armv7l"/>
-    <profile name="asus_tf101_debian" description="Asus TF101 Image (Debian)" arch="armv7l">
-        <requires profile="asus_tf101"/>
+    <profile name="asus-tf101" description="Asus TF101 Image" arch="armv7l"/>
+    <profile name="asus-tf101_debian" description="Asus TF101 Image (Debian)" arch="armv7l">
+        <requires profile="asus-tf101"/>
         <requires profile="common_debian"/>
     </profile>
-     <profile name="asus_tf101_pmos" description="Asus TF101 Image (PostmarketOS)" arch="armv7l">
-        <requires profile="asus_tf101"/>
+     <profile name="asus-tf101_pmos" description="Asus TF101 Image (PostmarketOS)" arch="armv7l">
+        <requires profile="asus-tf101"/>
         <requires profile="common_alpine"/>
+    </profile>
+
+    <!-- Minix NEO X8-H Profiles -->
+    <profile name="minix-neox8h" description="Minix NEO X8-H Image" arch="armv7l"/>
+    <profile name="minix-neox8h_debian" description="Minix NEO X8-H Image (Debian)" arch="armv7l">
+        <requires profile="minix-neox8h"/>
+        <requires profile="common_debian"/>
     </profile>
 </profiles>
 </image>

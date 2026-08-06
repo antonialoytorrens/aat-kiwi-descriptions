@@ -15,20 +15,20 @@
     </packages>
 
     <!-- Odroid U3 -->
-    <packages type="image" profiles="odroid_u3_alpine">
+    <packages type="image" profiles="odroid-u3_alpine">
         <package name="linux-lts"/>
         <package name="uboot-tools"/>
     </packages>
 
     <!-- PC i386 -->
-    <packages type="image" profiles="pc_i386_alpine">
+    <packages type="image" profiles="pc-i386_alpine">
         <package name="linux-lts"/>
         <package name="grub"/>
         <package name="grub-efi"/>
     </packages>
 
     <!-- PC x86_64 -->
-    <packages type="image" profiles="pc_x86_64_alpine">
+    <packages type="image" profiles="pc-x86_64_alpine">
         <package name="linux-lts"/>
         <package name="grub"/>
         <package name="grub-efi"/>

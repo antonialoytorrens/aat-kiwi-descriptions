@@ -26,4 +26,9 @@
     <repository type="apt-deb" distribution="forky-security" components="main contrib non-free non-free-firmware" repository_gpgcheck="false" profiles="debian_14">
         <source path="http://security.debian.org/debian-security"/>
     </repository>
+
+    <!-- Minix NEO X8-H custom kernel/firmware -->
+    <repository type="apt-deb" distribution="trixie" components="main" repository_gpgcheck="false" profiles="minix-neox8h_debian">
+        <source path="https://dports.antonialoytorrens.com/aat-debkernel-repository"/>
+    </repository>
 </image>

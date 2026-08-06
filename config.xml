@@ -42,10 +42,10 @@
     <include from="this://./components/pmos/base.xml"/>
 
     <!-- Platforms -->
-    <include from="this://./platforms/asus_tf101.xml"/>
-    <include from="this://./platforms/odroid_u3.xml"/>
-    <include from="this://./platforms/pc_i386.xml"/>
-    <include from="this://./platforms/pc_x86_64.xml"/>
-    <include from="this://./platforms/rpi.xml"/>
+    <include from="this://./platforms/asus-tf101.xml"/>
+    <include from="this://./platforms/minix-neox8h.xml"/>
+    <include from="this://./platforms/odroid-u3.xml"/>
+    <include from="this://./platforms/pc-i386.xml"/>
+    <include from="this://./platforms/pc-x86_64.xml"/>
 
 </image>
