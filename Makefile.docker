@@ -1,27 +1,45 @@
 #!/usr/bin/make -f
 
 SHELL := /bin/bash
+
+include common.mk
+
+DISTRO  ?=
+TIER    ?= $(DEFAULT_TIER)
+RELEASE ?=
 COMPOSE := docker compose
 SERVICE := builder
 
-.PHONY: all help docker-build docker-shell docker-down FORCE
+FORWARD_TARGETS := $(PLATFORMS) lint format clean bsp-pull
 
-# Explicit no-op rule so GNU Make's own makefile-remake check doesn't
-# match this file's own name against the catch-all %: pattern below.
-Makefile.docker: ;
+.PHONY: all help docker-build docker-shell docker-down $(FORWARD_TARGETS)
 
 all: help
 
 help:
-	@echo "Usage: make -f Makefile.docker <target> [ARGS...]"
+	@echo "Usage: make -f Makefile.docker <platform> DISTRO=<$(DISTRO_ALT)> TIER=<workstation|server> [RELEASE=<release>]"
+	@echo "Example (native arch):  make -f Makefile.docker pc-x86_64 DISTRO=debian TIER=workstation"
+	@echo "Example (foreign arch): make -f Makefile.docker asus-tf101 DISTRO=debian TIER=workstation"
 	@echo ""
-	@echo "  docker-build            - Build (or rebuild) the builder image"
-	@echo "  docker-shell            - Open an interactive shell in the builder container"
-	@echo "  docker-down             - Remove containers and the kiwi package-cache volume"
+	@echo "Available platforms and their distros:"
+	@for p in $(PLATFORMS); do \
+		distros=$$(printf '%s\n' $(PROFILES) | grep "^$${p}_" | sed "s/^$${p}_//" | tr '\n' ' '); \
+		echo "  $$p: $$distros"; \
+	done
 	@echo ""
-	@echo "  Anything else is forwarded into the container's own Makefile, e.g.:"
-	@echo "  <platform> DISTRO=...   - make <platform> DISTRO=... [TIER=...] [RELEASE=...]"
-	@echo "  lint / format / clean   - runs the same target inside the container"
+	@echo "Permitted releases per distro (first is the default):"
+	@for dr in $(RELEASES); do \
+		d=$${dr%%:*}; r=$${dr#*:}; \
+		echo "  $$d: $${r//,/ }"; \
+	done
+	@echo ""
+	@echo "Docker-only targets:"
+	@echo "  docker-build   - Build (or rebuild) the builder image"
+	@echo "  docker-shell   - Open an interactive shell in the builder container"
+	@echo "  docker-down    - Remove containers and the kiwi package-cache volume"
+	@echo ""
+	@echo "Forwarded into the container's own Makefile (same usage as make there):"
+	@echo "  <platform> DISTRO=...  clean  lint  format  bsp-pull"
 	@echo ""
 	@echo "  Foreign-arch platforms (e.g. minix-neox8h, odroid-u3, asus-tf101) run"
 	@echo "  the builder container itself under QEMU emulation, matching the"
@@ -38,7 +56,7 @@ docker-shell:
 docker-down:
 	$(COMPOSE) down -v
 
-%: FORCE
+$(FORWARD_TARGETS):
 	@arch=$$(grep "name=\"$@\"" includes/profiles.xml | grep -o 'arch="[^"]*"' | cut -d'"' -f2); \
 	case "$$arch" in \
 		x86_64) platform=linux/amd64 ;; \
@@ -51,5 +69,3 @@ docker-down:
 		$(if $(DISTRO),DISTRO=$(DISTRO)) \
 		$(if $(TIER),TIER=$(TIER)) \
 		$(if $(RELEASE),RELEASE=$(RELEASE))
-
-FORCE:

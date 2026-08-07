@@ -38,6 +38,9 @@ systemctl enable NetworkManager
 # SSH
 systemctl enable ssh
 
+# Unattended Upgrades
+systemctl enable unattended-upgrades
+
 # Preseed
 if [ -f /tmp/preseed.cfg ]; then
     echo "Applying preseed configuration..."

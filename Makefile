@@ -5,8 +5,7 @@
 
 SHELL := /bin/bash
 
-# Static configuration
-include settings.cfg
+include common.mk
 
 BUILD_DIR = build
 CONFIG_DIR = .
@@ -14,16 +13,6 @@ DISTRO  ?=
 TIER    ?= $(DEFAULT_TIER)
 RELEASE ?=
 SUDO    := $(shell [ "$$(id -u)" = 0 ] && echo "" || echo "sudo")
-
-# DISTROS, sourced from keys of RELEASES in settings.cfg
-empty :=
-space := $(empty) $(empty)
-DISTROS := $(foreach r,$(RELEASES),$(word 1,$(subst :, ,$(r))))
-DISTRO_ALT := $(subst $(space),|,$(DISTROS))
-
-# Listings
-PROFILES := $(shell grep 'profile name="' includes/profiles.xml | cut -d'"' -f2 | grep -E '_($(DISTRO_ALT))$$' | grep -v '^common_')
-PLATFORMS := $(shell grep 'profile name="' includes/profiles.xml | cut -d'"' -f2 | grep -Ev '_($(DISTRO_ALT))$$' | grep -v '^common_' | grep -Ev '^(workstation|server)$$' | grep -Ev '^($(DISTRO_ALT))_')
 
 # File listing
 XML_FILES := $(shell find . \( -path "./$(BUILD_DIR)" -o -path "./bsp" \) -prune -o -name "*.xml" -print)

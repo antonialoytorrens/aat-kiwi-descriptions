@@ -18,10 +18,12 @@
         <package name="net-tools"/>
         <package name="network-manager"/>
         <package name="openssh-server"/>
+        <package name="passwd"/>
         <package name="procps"/>
         <package name="sudo"/>
         <package name="systemd"/>
         <package name="systemd-sysv"/>
+        <package name="unattended-upgrades"/>
         <package name="util-linux"/>
         <package name="vim"/>
         <package name="wget"/>
