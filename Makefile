@@ -15,7 +15,6 @@ PROFILES := $(shell grep 'profile name="' includes/profiles.xml | cut -d'"' -f2 
 PLATFORMS := $(shell grep 'profile name="' includes/profiles.xml | cut -d'"' -f2 | grep -Ev '_($(DISTRO_ALT))$$' | grep -v '^common_' | grep -Ev '^(workstation|server)$$' | grep -Ev '^($(DISTRO_ALT))_')
 
 BUILD_DIR = build
-CONFIG_DIR = .
 DISTRO  ?=
 TIER    ?= $(DEFAULT_TIER)
 RELEASE ?=
@@ -94,7 +93,12 @@ $(PLATFORMS):
 		echo "ERROR: no such profile '$$profile'. Valid distros for $@: $$(printf '%s\n' $(PROFILES) | grep "^$@_" | sed "s/^$@_//" | tr '\n' ' ')"; \
 		exit 1; \
 	}; \
-	python3 scripts/apply_bsp.py --device "$@" --distribution "$(DISTRO)" --release "$$release"; \
+	descdir="$(CURDIR)/$(BUILD_DIR)/description"; \
+	mkdir -p "$$descdir"; \
+	for f in config.xml includes platforms components repositories config.sh post_bootstrap.sh pre_disk_sync.sh; do \
+		ln -sfn "$(CURDIR)/$$f" "$$descdir/$$f"; \
+	done; \
+	python3 scripts/apply_bsp.py --device "$@" --distribution "$(DISTRO)" --release "$$release" --target "$$descdir/$@"; \
 	build_profile="$$profile,$(TIER),$(DISTRO)_$$release"; \
 	outdir="$(BUILD_DIR)/$${profile}_$(TIER)_$$release"; \
 	arch=$$(grep "name=\"$@\"" includes/profiles.xml | grep -o 'arch="[^"]*"' | cut -d'"' -f2); \
@@ -102,7 +106,7 @@ $(PLATFORMS):
 	mkdir -p "$$outdir"; \
 	# This directory shall be created, otherwise debian keyring fails \
 	$(SUDO) mkdir -p /var/cache/kiwi/apt-get/trusted.gpg.d; \
-	$(SUDO) kiwi-ng $${arch:+--target-arch "$$arch"} --profile "$$profile" --profile "$(TIER)" --profile "$(DISTRO)_$$release" system build --description $(CONFIG_DIR) --target-dir "$$outdir"
+	$(SUDO) kiwi-ng $${arch:+--target-arch "$$arch"} --profile "$$profile" --profile "$(TIER)" --profile "$(DISTRO)_$$release" system build --description "$$descdir" --target-dir "$$outdir"
 
 lint:
 	@echo "Linting XML descriptions (xmllint)..."

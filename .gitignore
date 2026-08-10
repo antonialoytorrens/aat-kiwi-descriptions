@@ -1,29 +1,9 @@
-# kiwi-ng build output
+# kiwi-ng build output, including the generated description-root symlink
+# farm and merged BSP overlay that scripts/apply_bsp.py writes into it
+# (see the $(PLATFORMS) recipe in Makefile).
 /build/
 
 __pycache__/
 
-# Device-specific tweaks (board support package), fetched/merged by
-# scripts/fetch_bsp.py and scripts/apply_bsp.py - see platforms/PLATFORMS.md.
-# The clone itself, plus the merged output dirs kiwi discovers (named
-# after the 19 profiles in includes/profiles.xml) - never committed here.
+# Board support package clone, fetched by scripts/fetch_bsp.py (make bsp-pull).
 /bsp/
-/common_debian
-/common_alpine
-/pc-x86_64
-/pc-x86_64_debian
-/pc-x86_64_alpine
-/pc-x86_64_pmos
-/pc-i386
-/pc-i386_debian
-/pc-i386_alpine
-/pc-i386_pmos
-/odroid-u3
-/odroid-u3_debian
-/odroid-u3_alpine
-/odroid-u3_pmos
-/asus-tf101
-/asus-tf101_debian
-/asus-tf101_pmos
-/minix-neox8h
-/minix-neox8h_debian
