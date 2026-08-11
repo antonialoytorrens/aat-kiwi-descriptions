@@ -2,6 +2,7 @@ services:
   aat-kiwi-builder:
     build: .
     image: aat-kiwi-descriptions-builder
+    pull_policy: build
     platform: ${DOCKER_PLATFORM:-linux/amd64}
     privileged: true
     volumes:
