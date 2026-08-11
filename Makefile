@@ -16,16 +16,17 @@ PROFILES := $(shell grep 'profile name="' includes/profiles.xml | cut -d'"' -f2 
 PLATFORMS := $(shell grep 'profile name="' includes/profiles.xml | cut -d'"' -f2 | grep -Ev '_($(DISTRO_ALT))$$' | grep -v '^common_' | grep -Ev '^(workstation|server)$$' | grep -Ev '^($(DISTRO_ALT))_')
 
 BUILD_DIR = build
-DISTRO  ?=
-TIER    ?= $(DEFAULT_TIER)
-RELEASE ?=
-SUDO    := $(shell [ "$$(id -u)" = 0 ] && echo "" || echo "sudo")
-COMPOSE := docker compose
-SERVICE := builder
+DISTRO   ?=
+TIER     ?= $(DEFAULT_TIER)
+RELEASE  ?=
+COMPRESS ?= 1
+SU       ?= $(shell [ "$$(id -u)" = 0 ] && echo "" || echo "sudo")
+COMPOSE  := docker compose
+SERVICE  := aat-kiwi-builder
 
 # File listing
 XML_FILES := $(shell find . \( -path "./$(BUILD_DIR)" -o -path "./bsp" \) -prune -o -name "*.xml" -print)
-SHELL_SCRIPTS := config.sh post_bootstrap.sh pre_disk_sync.sh
+SHELL_SCRIPTS := config.sh post_bootstrap.sh pre_disk_sync.sh scripts/finalize_image.sh
 
 # Docker-wrapped equivalents of the host-direct targets below, e.g. docker-pc-x86_64
 DOCKER_TARGETS := $(addprefix docker-,$(PLATFORMS) lint format clean bsp-pull)
@@ -35,9 +36,12 @@ DOCKER_TARGETS := $(addprefix docker-,$(PLATFORMS) lint format clean bsp-pull)
 all: help
 
 help:
-	@echo "Usage: make <platform> DISTRO=<$(DISTRO_ALT)> TIER=<workstation|server> [RELEASE=<release>]"
+	@echo "Usage: make <platform> DISTRO=<$(DISTRO_ALT)> TIER=<workstation|server> [RELEASE=<release>] [COMPRESS=0|1]"
 	@echo "Example (native, on host):     make pc-x86_64 DISTRO=debian TIER=workstation"
 	@echo "Example (isolated, in Docker): make docker-pc-x86_64 DISTRO=debian TIER=workstation"
+	@echo ""
+	@echo "Build output is <name>.<arch>-<version>.img.xz if compression is set."
+	@echo "Otherwise, build output is <name>.<arch>-<version>.img."
 	@echo ""
 	@echo "Available platforms and their distros:"
 	@for p in $(PLATFORMS); do \
@@ -70,10 +74,10 @@ help:
 	@echo "    docker run --privileged --rm tonistiigi/binfmt --install all"
 
 clean:
-	$(SUDO) rm -rf /var/cache/kiwi/*
-	$(SUDO) rm -rf $(BUILD_DIR)
+	$(SU) rm -rf /var/cache/kiwi/*
+	$(SU) rm -rf $(BUILD_DIR)
 
-# Board Support Packaging (can be empty for specific platforms); run on demand, not automatically
+# Board Support Packaging (can be empty for specific platforms)
 bsp-pull:
 	@python3 scripts/fetch_bsp.py --repo $(BSP_REPO) --branch $(BSP_BRANCH)
 
@@ -109,8 +113,9 @@ $(PLATFORMS):
 	echo "Building profile: $$build_profile (arch: $${arch:-host})"; \
 	mkdir -p "$$outdir"; \
 	# This directory shall be created, otherwise debian keyring fails \
-	$(SUDO) mkdir -p /var/cache/kiwi/apt-get/trusted.gpg.d; \
-	$(SUDO) kiwi-ng $${arch:+--target-arch "$$arch"} --profile "$$profile" --profile "$(TIER)" --profile "$(DISTRO)_$$release" system build --description "$$descdir" --target-dir "$$outdir"
+	$(SU) mkdir -p /var/cache/kiwi/apt-get/trusted.gpg.d; \
+	$(SU) kiwi-ng $${arch:+--target-arch "$$arch"} --profile "$$profile" --profile "$(TIER)" --profile "$(DISTRO)_$$release" system build --description "$$descdir" --target-dir "$$outdir"; \
+	$(SU) scripts/finalize_image.sh "$$outdir" "$(COMPRESS)"
 
 lint:
 	@echo "Linting XML descriptions (xmllint)..."
@@ -150,4 +155,5 @@ $(DOCKER_TARGETS):
 	DOCKER_PLATFORM=$$platform $(COMPOSE) run --rm $(SERVICE) make $$target \
 		$(if $(DISTRO),DISTRO=$(DISTRO)) \
 		$(if $(TIER),TIER=$(TIER)) \
-		$(if $(RELEASE),RELEASE=$(RELEASE))
+		$(if $(RELEASE),RELEASE=$(RELEASE)) \
+		$(if $(COMPRESS),COMPRESS=$(COMPRESS))
