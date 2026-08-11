@@ -29,8 +29,8 @@
         <package name="wget"/>
 
         <!-- Non-essential, but very useful -->
-        <package name="hw-probe"/>
-        <package name="fastfetch"/>
+        <!--<package name="hw-probe"/>
+        <package name="fastfetch"/>-->
     </packages>
     <packages type="bootstrap" />
 

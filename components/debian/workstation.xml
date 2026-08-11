@@ -1,5 +1,5 @@
 <image>
-    <packages type="image" profiles="workstation">
+    <packages type="image" profiles="workstation" patternType="plusRecommended">
         <package name="task-xfce-desktop"/>
     </packages>
 </image>
