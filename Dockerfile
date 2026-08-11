@@ -5,7 +5,7 @@ FROM debian:forky
 RUN    apt-get update && \
     apt-get -yq full-upgrade && \
     apt-get -yq install --no-install-recommends \
-        kiwi rsync make python3 libxml2-utils shellcheck ca-certificates \
+        kiwi rsync make kiwi-systemdeps fdisk \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /workspace

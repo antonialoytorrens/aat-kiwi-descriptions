@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<image schemaversion="7.4" name="debian-live-config" displayname="Debian Live Config" xmlns:xi="http://www.w3.org/2001/XInclude">
+<image schemaversion="7.4" name="" displayname="" xmlns:xi="http://www.w3.org/2001/XInclude">
     <description type="system">
         <author>Antoni Aloy Torrens</author>
         <contact>aaloytorrens@gmail.com</contact>
-        <specification>Debian Live Config (Kiwi-NG)</specification>
+        <specification>AAT Kiwi Sample Config (Kiwi-NG)</specification>
     </description>
 
     <!-- Shared Profiles -->

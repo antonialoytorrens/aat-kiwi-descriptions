@@ -7,6 +7,9 @@ services:
     volumes:
       - .:/workspace
       - kiwi-cache:/var/cache/kiwi
+      # Live host /dev (not a static device list): partition nodes kiwi creates
+      # dynamically via losetup (e.g. /dev/loop3p1) must be visible in-container.
+      - /dev:/dev
     working_dir: /workspace
 
 volumes:

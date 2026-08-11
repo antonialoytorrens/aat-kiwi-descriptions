@@ -1,7 +1,8 @@
 <image>
     <!-- Asus TF101 -->
     <preferences profiles="asus-tf101">
-        <type image="oem" initrd_system="dracut" filesystem="ext4" bootpartition="true" bootfilesystem="fat16" bootpartsize="256">
+        <type image="oem" initrd_system="dracut" filesystem="ext4" bootpartition="true" bootfilesystem="fat16" bootpartsize="256" firmware="custom">
+            <bootloader name="custom"/>
             <oemconfig>
                 <oem-resize>true</oem-resize>
             </oemconfig>

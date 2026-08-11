@@ -33,12 +33,15 @@ usermod -aG cdrom,floppy,sudo,audio,dip,video,plugdev,netdev,bluetooth,lpadmin,s
 # Network
 echo "Configuring Network..."
 # Enable systemd-networkd if needed, or NetworkManager
+#baseInsertService NetworkManager
 systemctl enable NetworkManager
 
 # SSH
+#baseInsertService sshd
 systemctl enable ssh
 
 # Unattended Upgrades
+#baseInsertService unattended-upgrades
 systemctl enable unattended-upgrades
 
 # Preseed

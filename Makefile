@@ -9,6 +9,7 @@ empty :=
 space := $(empty) $(empty)
 DISTROS := $(foreach r,$(RELEASES),$(word 1,$(subst :, ,$(r))))
 DISTRO_ALT := $(subst $(space),|,$(DISTROS))
+KIWI_VERSION := $(shell kiwi-ng --version 2>/dev/null | awk '{print $$NF}')
 
 # Listings
 PROFILES := $(shell grep 'profile name="' includes/profiles.xml | cut -d'"' -f2 | grep -E '_($(DISTRO_ALT))$$' | grep -v '^common_')
@@ -95,9 +96,12 @@ $(PLATFORMS):
 	}; \
 	descdir="$(CURDIR)/$(BUILD_DIR)/description"; \
 	mkdir -p "$$descdir"; \
-	for f in config.xml includes platforms components repositories config.sh post_bootstrap.sh pre_disk_sync.sh; do \
+	for f in includes platforms components repositories config.sh post_bootstrap.sh pre_disk_sync.sh; do \
 		ln -sfn "$(CURDIR)/$$f" "$$descdir/$$f"; \
 	done; \
+	sed -e 's/ name=""/ name="$(DISTRO)-'"$$release"'_$@"/' \
+	    -e 's/ displayname=""/ displayname="$(DISTRO)-'"$$release"'_$@_$(KIWI_VERSION)"/' \
+	    "$(CURDIR)/config.xml" > "$$descdir/config.xml"; \
 	python3 scripts/apply_bsp.py --device "$@" --distribution "$(DISTRO)" --release "$$release" --target "$$descdir/$@"; \
 	build_profile="$$profile,$(TIER),$(DISTRO)_$$release"; \
 	outdir="$(BUILD_DIR)/$${profile}_$(TIER)_$$release"; \

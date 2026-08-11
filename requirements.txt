@@ -1,6 +1,0 @@
-# Kiwi-NG and Build Dependencies
-kiwi>=9.24.0
-
-# Linting/formatting (shellcheck, xmllint) are system packages, not pip
-# packages - see `make lint`/`make format` (requires shellcheck and
-# libxml2-utils/xmllint to be installed).

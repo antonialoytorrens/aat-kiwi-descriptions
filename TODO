@@ -1,8 +1,6 @@
 Properly configure tests
 Configure CI/CD for each platform.
 
-install gdisk for configuring partitions, in host
-
 Install services like this:
 #======================================
 # Activate services
