@@ -3,9 +3,31 @@
 into a top-level overlay dir kiwi's profile-overlay discovery can find.
 Never fails the build."""
 import argparse
+import os
 import shutil
 import sys
 from pathlib import Path
+
+
+def merge_tree(src: Path, dst: Path) -> None:
+    """Merge src into dst, preserving symlinks and skipping paths dst already has.
+
+    Plain shutil.copytree either dereferences symlinks into duplicated real
+    directories, or (with symlinks=True) crashes if a later layer's symlink
+    collides with a real directory an earlier layer already created (e.g.
+    usrmerge's lib -> usr/lib). Recursing by hand avoids both.
+    """
+    dst.mkdir(parents=True, exist_ok=True)
+    for entry in src.iterdir():
+        d = dst / entry.name
+        if entry.is_symlink():
+            if d.exists() or d.is_symlink():
+                continue
+            d.symlink_to(os.readlink(entry))
+        elif entry.is_dir():
+            merge_tree(entry, d)
+        else:
+            shutil.copy2(entry, d)
 
 
 def main() -> int:
@@ -31,8 +53,11 @@ def main() -> int:
 
     for layer in (common_dir, distro_dir):
         if layer.is_dir():
-            # dirs_exist_ok merges layers, later ones overwriting matching paths.
-            shutil.copytree(layer, target, dirs_exist_ok=True)
+            # Merges layers: files overwrite matching paths, but a symlink
+            # (e.g. usrmerge's lib -> usr/lib) is only created if nothing
+            # already occupies that path, and existing symlinks are followed
+            # rather than replaced.
+            merge_tree(layer, target)
             found = True
 
     if not found:
