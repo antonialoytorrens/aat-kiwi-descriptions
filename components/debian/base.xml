@@ -11,6 +11,7 @@
         <package name="dracut"/>
         <package name="kiwi-dracut-oem-repart"/>
         <package name="e2fsprogs"/>
+        <package name="fdisk"/>
         <package name="iproute2"/>
         <package name="iputils-ping"/>
         <package name="less"/>
