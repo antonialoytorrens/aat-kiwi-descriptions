@@ -1,5 +1,7 @@
 <image>
     <packages type="image" profiles="workstation" patternType="plusRecommended">
         <package name="task-xfce-desktop"/>
+        <package name="plymouth"/>
+        <package name="plymouth-themes"/>
     </packages>
 </image>
