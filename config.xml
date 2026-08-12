@@ -13,8 +13,8 @@
     <preferences profiles="common_debian">
         <version>1.0.0</version>
         <packagemanager>apt</packagemanager>
-        <bootsplash-theme>debian</bootsplash-theme>
-        <bootloader-theme>debian</bootloader-theme>
+        <bootsplash-theme>ceratopsian</bootsplash-theme>
+        <bootloader-theme>live-theme</bootloader-theme>
         <!--<locale>ca_ES</locale>
         <timezone>Europe/Madrid</timezone>
         <keytable>es-cat</keytable>-->
