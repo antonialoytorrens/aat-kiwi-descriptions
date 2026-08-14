@@ -100,14 +100,15 @@ $(PLATFORMS):
 	}; \
 	descdir="$(CURDIR)/$(BUILD_DIR)/description"; \
 	mkdir -p "$$descdir"; \
-	for f in includes platforms components repositories config.sh post_bootstrap.sh pre_disk_sync.sh; do \
+	for f in includes platforms components repositories config.sh pre_disk_sync.sh; do \
 		ln -sfn "$(CURDIR)/$$f" "$$descdir/$$f"; \
 	done; \
+	sed -e 's#__KEYTABLE__#$(KEYTABLE)#g' \
+	    "$(CURDIR)/post_bootstrap.sh" > "$$descdir/post_bootstrap.sh"; \
 	mkdir -p "$$descdir/preferences"; \
 	ln -sfn "$(CURDIR)/preferences/alpine.xml" "$$descdir/preferences/alpine.xml"; \
 	sed -e 's#<locale></locale>#<locale>$(LOCALE)</locale>#' \
 	    -e 's#<timezone></timezone>#<timezone>$(TIMEZONE)</timezone>#' \
-	    -e 's#<keytable></keytable>#<keytable>$(KEYTABLE)</keytable>#' \
 	    "$(CURDIR)/preferences/debian.xml" > "$$descdir/preferences/debian.xml"; \
 	mkdir -p "$$descdir/users"; \
 	sed -e 's#name=""#name="$(USERNAME)"#' \

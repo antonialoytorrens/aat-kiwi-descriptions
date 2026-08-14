@@ -7,6 +7,5 @@
         <bootloader-theme>live-theme</bootloader-theme>
         <locale></locale>
         <timezone></timezone>
-        <keytable></keytable>
     </preferences>
 </image>

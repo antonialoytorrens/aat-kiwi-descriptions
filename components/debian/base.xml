@@ -19,6 +19,7 @@
         <package name="iputils-ping"/>
         <package name="kbd"/>
         <package name="console-data"/>
+        <package name="keyboard-configuration"/>
         <package name="less"/>
         <package name="locales"/>
         <package name="net-tools"/>

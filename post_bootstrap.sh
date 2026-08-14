@@ -8,6 +8,8 @@ locales locales/locales_to_be_generated multiselect ca_ES.UTF-8 UTF-8, es_ES.UTF
 locales locales/default_environment_locale select ca_ES.UTF-8
 tzdata tzdata/Areas select Europe
 tzdata tzdata/Zones/Europe select Madrid
+keyboard-configuration keyboard-configuration/layoutcode string __KEYTABLE__
+keyboard-configuration keyboard-configuration/xkb-keymap select __KEYTABLE__
 EOF
 fi
 
