@@ -1,11 +1,11 @@
 <image>
     <!-- Debian/derivative Preferences -->
     <preferences profiles="common_debian">
-        <version>1.0.0</version>
+        <version>@VERSION@</version>
         <packagemanager>apt</packagemanager>
         <bootsplash-theme>ceratopsian</bootsplash-theme>
         <bootloader-theme>live-theme</bootloader-theme>
-        <locale></locale>
-        <timezone></timezone>
+        <locale>@LOCALE@</locale>
+        <timezone>@TIMEZONE@</timezone>
     </preferences>
 </image>

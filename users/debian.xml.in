@@ -1,0 +1,12 @@
+<image>
+    <users profiles="common_debian">
+        <user
+            name="@USERNAME@"
+            password="@PASSWORD@"
+            pwdformat="plain"
+            home="/home/@USERNAME@"
+            shell="/bin/bash"
+            groups="@USERNAME@,sudo,audio,dip,video,plugdev,netdev,bluetooth,lpadmin,scanner,cdrom,floppy"
+        />
+    </users>
+</image>

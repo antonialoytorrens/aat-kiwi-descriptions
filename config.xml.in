@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<image schemaversion="7.4" name="" displayname="" xmlns:xi="http://www.w3.org/2001/XInclude">
+<image schemaversion="7.4" name="@NAME@" displayname="@DISPLAYNAME@" xmlns:xi="http://www.w3.org/2001/XInclude">
     <description type="system">
         <author>Antoni Aloy Torrens</author>
         <contact>aaloytorrens@gmail.com</contact>
