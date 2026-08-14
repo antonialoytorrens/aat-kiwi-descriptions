@@ -1,25 +1,4 @@
 <image>
-    <!-- Asus TF101 -->
-    <packages type="image" profiles="asus-tf101_pmos">
-        <package name="linux-asus-tf101"/>
-        <package name="postmarketos-base"/>
-    </packages>
-
-    <!-- Odroid U3 -->
-    <packages type="image" profiles="odroid-u3_pmos">
-        <package name="linux-odroid-u2"/> <!-- Example specific kernel if available in pmos -->
-        <package name="postmarketos-base"/>
-    </packages>
-
-    <!-- PC i386 -->
-    <packages type="image" profiles="pc-i386_pmos">
-        <package name="linux-lts"/>
-        <package name="postmarketos-base"/>
-    </packages>
-
-    <!-- PC x86_64 -->
-    <packages type="image" profiles="pc-x86_64_pmos">
-        <package name="linux-lts"/>
-        <package name="postmarketos-base"/>
-    </packages>
+    <!-- pmOS-common packages (profiles="common_alpine") go here. -->
+    <!-- Platform-specific pmOS packages live in platforms/$platform.xml. -->
 </image>

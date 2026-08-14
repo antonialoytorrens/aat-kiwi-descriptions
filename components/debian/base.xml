@@ -1,4 +1,7 @@
 <image>
+    <packages type="bootstrap" profiles="common_debian">
+        <package name="debconf"/>
+    </packages>
     <packages type="image" profiles="common_debian">
         <package name="acl"/>
         <package name="attr"/>
@@ -14,6 +17,8 @@
         <package name="fdisk"/>
         <package name="iproute2"/>
         <package name="iputils-ping"/>
+        <package name="kbd"/>
+        <package name="console-data"/>
         <package name="less"/>
         <package name="locales"/>
         <package name="net-tools"/>
@@ -32,70 +37,5 @@
         <!-- Non-essential, but very useful -->
         <!--<package name="hw-probe"/>
         <package name="fastfetch"/>-->
-    </packages>
-    <packages type="bootstrap" profiles="common_debian">
-        <package name="debconf"/>
-    </packages>
-
-    <!-- Asus TF101 -->
-    <packages type="image" profiles="asus-tf101_debian">
-        <package name="linux-image-asus-tf101"/>
-        <package name="u-boot-asus-tf101"/>
-        <package name="u-boot-menu"/>
-    </packages>
-
-    <!-- Minix NEO X8-H -->
-    <packages type="image" profiles="minix-neox8h_debian">
-        <package name="linux-image-m8x"/>
-        <package name="u-boot-tools"/>
-	<!-- Firmware is included in bsp repository -->
-    </packages>
-
-    <!-- Odroid U3 -->
-    <packages type="image" profiles="odroid-u3_debian">
-        <package name="linux-image-armmp"/>
-        <package name="u-boot-tools"/>
-    </packages>
-
-    <!-- PC i386 -->
-    <packages type="image" profiles="pc-i386_debian">
-        <package name="linux-image-686"/>
-        <package name="grub-pc"/>
-        <package name="grub-efi-ia32-bin"/>
-
-        <!-- Firmware -->
-        <package name="firmware-linux"/>
-        <!--<package name="firmware-realtek"/>
-        <package name="firmware-atheros"/>
-        <package name="firmware-b43-installer"/>
-        <package name="firmware-brcm80211"/>
-        <package name="firmware-ipw2x00"/>
-        <package name="firmware-iwlwifi"/>-->
-        <package name="amd64-microcode"/>
-        <package name="intel-microcode"/>
-        <!--<package name="broadcom-sta-dkms"/>
-        <package name="broadcom-sta-source"/>
-        <package name="broadcom-sta-common"/>-->
-    </packages>
-
-    <!-- PC x86_64 -->
-    <packages type="image" profiles="pc-x86_64_debian">
-        <package name="linux-image-amd64"/>
-        <package name="grub-pc"/>
-        <package name="grub-efi-amd64-bin"/>
-
-        <!-- Firmware -->
-        <package name="firmware-linux"/>
-        <!--<package name="firmware-realtek"/>
-        <package name="firmware-atheros"/>
-        <package name="firmware-b43-installer"/>
-        <package name="firmware-brcm80211"/>
-        <package name="firmware-ipw2x00"/>
-        <package name="firmware-iwlwifi"/>-->
-        <package name="amd64-microcode"/>
-        <package name="intel-microcode"/>
-        <!--<package name="broadcom-sta-dkms"/>
-        <package name="broadcom-sta-source"/>
-        <package name="broadcom-sta-common"/>-->
     </packages>
 </image>

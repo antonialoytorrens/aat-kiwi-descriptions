@@ -8,4 +8,11 @@
             </oemconfig>
         </type>
     </preferences>
+
+    <!-- Debian -->
+    <packages type="image" profiles="minix-neox8h_debian">
+        <package name="linux-image-m8x"/>
+        <package name="u-boot-tools"/>
+        <!-- Firmware is included in bsp repository -->
+    </packages>
 </image>

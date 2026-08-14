@@ -13,24 +13,4 @@
         <!-- OpenRC handled by alpine-base usually, or explicitly: -->
         <package name="openrc"/>
     </packages>
-
-    <!-- Odroid U3 -->
-    <packages type="image" profiles="odroid-u3_alpine">
-        <package name="linux-lts"/>
-        <package name="uboot-tools"/>
-    </packages>
-
-    <!-- PC i386 -->
-    <packages type="image" profiles="pc-i386_alpine">
-        <package name="linux-lts"/>
-        <package name="grub"/>
-        <package name="grub-efi"/>
-    </packages>
-
-    <!-- PC x86_64 -->
-    <packages type="image" profiles="pc-x86_64_alpine">
-        <package name="linux-lts"/>
-        <package name="grub"/>
-        <package name="grub-efi"/>
-    </packages>
 </image>

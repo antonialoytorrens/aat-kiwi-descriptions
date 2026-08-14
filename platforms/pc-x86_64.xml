@@ -7,4 +7,38 @@
             </oemconfig>
         </type>
     </preferences>
+
+    <!-- Debian -->
+    <packages type="image" profiles="pc-x86_64_debian">
+        <package name="linux-image-amd64"/>
+        <package name="grub-pc"/>
+        <package name="grub-efi-amd64-bin"/>
+
+        <!-- Firmware -->
+        <package name="firmware-linux"/>
+        <!--<package name="firmware-realtek"/>
+        <package name="firmware-atheros"/>
+        <package name="firmware-b43-installer"/>
+        <package name="firmware-brcm80211"/>
+        <package name="firmware-ipw2x00"/>
+        <package name="firmware-iwlwifi"/>-->
+        <package name="amd64-microcode"/>
+        <package name="intel-microcode"/>
+        <!--<package name="broadcom-sta-dkms"/>
+        <package name="broadcom-sta-source"/>
+        <package name="broadcom-sta-common"/>-->
+    </packages>
+
+    <!-- Alpine -->
+    <packages type="image" profiles="pc-x86_64_alpine">
+        <package name="linux-lts"/>
+        <package name="grub"/>
+        <package name="grub-efi"/>
+    </packages>
+
+    <!-- pmOS -->
+    <packages type="image" profiles="pc-x86_64_pmos">
+        <package name="linux-lts"/>
+        <package name="postmarketos-base"/>
+    </packages>
 </image>

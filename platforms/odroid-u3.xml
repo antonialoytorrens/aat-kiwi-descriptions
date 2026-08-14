@@ -8,4 +8,22 @@
             </oemconfig>
         </type>
     </preferences>
+
+    <!-- Debian -->
+    <packages type="image" profiles="odroid-u3_debian">
+        <package name="linux-image-armmp"/>
+        <package name="u-boot-tools"/>
+    </packages>
+
+    <!-- Alpine -->
+    <packages type="image" profiles="odroid-u3_alpine">
+        <package name="linux-lts"/>
+        <package name="uboot-tools"/>
+    </packages>
+
+    <!-- pmOS -->
+    <packages type="image" profiles="odroid-u3_pmos">
+        <package name="linux-odroid-u2"/> <!-- Example specific kernel if available in pmos -->
+        <package name="postmarketos-base"/>
+    </packages>
 </image>
