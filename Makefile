@@ -36,7 +36,7 @@ DOCKER_TARGETS := $(addprefix docker-,$(PLATFORMS) lint format clean bsp-pull)
 all: help
 
 help:
-	@echo "Usage: make <platform> DISTRO=<$(DISTRO_ALT)> TIER=<workstation|server> [RELEASE=<release>] [COMPRESS=0|1]"
+	@echo "Usage: make <platform> DISTRO=<$(DISTRO_ALT)> TIER=<workstation|server> [RELEASE=<release>] [COMPRESS=0|1] [LOCALE=<locale>] [TIMEZONE=<timezone>] [KEYTABLE=<keytable>] [USERNAME=<username>] [PASSWORD=<password>]"
 	@echo "Example (native, on host):     make pc-x86_64 DISTRO=debian TIER=workstation"
 	@echo "Example (isolated, in Docker): make docker-pc-x86_64 DISTRO=debian TIER=workstation"
 	@echo ""
@@ -81,7 +81,7 @@ clean:
 bsp-pull:
 	@python3 scripts/fetch_bsp.py --repo $(BSP_REPO) --branch $(BSP_BRANCH)
 
-# Build targets: make <platform> DISTRO=<distro> TIER=<workstation|server> [RELEASE=<release>]
+# Build targets: make <platform> DISTRO=<distro> TIER=<workstation|server> [RELEASE=<release>] [LOCALE=<locale>] [TIMEZONE=<timezone>] [KEYTABLE=<keytable>] [USERNAME=<username>] [PASSWORD=<password>]
 $(PLATFORMS):
 	@[ -n "$(DISTRO)" ] || { echo "ERROR: DISTRO is required"; exit 1; }; \
 	releases=$$(printf '%s\n' $(RELEASES) | awk -F: -v d="$(DISTRO)" '$$1==d{print $$2}' | tr ',' ' '); \
@@ -103,6 +103,17 @@ $(PLATFORMS):
 	for f in includes platforms components repositories config.sh post_bootstrap.sh pre_disk_sync.sh; do \
 		ln -sfn "$(CURDIR)/$$f" "$$descdir/$$f"; \
 	done; \
+	mkdir -p "$$descdir/preferences"; \
+	ln -sfn "$(CURDIR)/preferences/alpine.xml" "$$descdir/preferences/alpine.xml"; \
+	sed -e 's#<locale></locale>#<locale>$(LOCALE)</locale>#' \
+	    -e 's#<timezone></timezone>#<timezone>$(TIMEZONE)</timezone>#' \
+	    -e 's#<keytable></keytable>#<keytable>$(KEYTABLE)</keytable>#' \
+	    "$(CURDIR)/preferences/debian.xml" > "$$descdir/preferences/debian.xml"; \
+	mkdir -p "$$descdir/users"; \
+	sed -e 's#name=""#name="$(USERNAME)"#' \
+	    -e 's#password=""#password="$(PASSWORD)"#' \
+	    -e 's#__USERNAME__#$(USERNAME)#g' \
+	    "$(CURDIR)/users/debian.xml" > "$$descdir/users/debian.xml"; \
 	sed -e 's/ name=""/ name="$(DISTRO)-'"$$release"'_$@"/' \
 	    -e 's/ displayname=""/ displayname="$(DISTRO)-'"$$release"'_$@_$(KIWI_VERSION)"/' \
 	    "$(CURDIR)/config.xml" > "$$descdir/config.xml"; \

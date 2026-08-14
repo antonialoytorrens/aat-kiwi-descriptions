@@ -2,12 +2,12 @@
     <!-- Debian/derivative Users -->
     <users profiles="common_debian">
         <user
-            name="linux"
-            password="changeme"
+            name=""
+            password=""
             pwdformat="plain"
-            home="/home/linux"
+            home="/home/__USERNAME__"
             shell="/bin/bash"
-            groups="linux,sudo,audio,dip,video,plugdev,netdev,bluetooth,lpadmin,scanner,cdrom,floppy"
+            groups="__USERNAME__,sudo,audio,dip,video,plugdev,netdev,bluetooth,lpadmin,scanner,cdrom,floppy"
         />
     </users>
 </image>
