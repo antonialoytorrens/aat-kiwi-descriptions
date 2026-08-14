@@ -1,62 +1,52 @@
-# debian-live-config
+# aat-kiwi-descriptions
 
-[![](https://gitlab.com/nodiscc/debian-live-config/badges/master/pipeline.svg)](https://gitlab.com/nodiscc/debian-live-config/-/pipelines)
+Builds image appliances via KIWI-NG. For now, only Debian is supported but I plan to add more distributions.
+Images are built for various architectures. I recommend using Docker for foreign platforms which are not compatible
+with the host architecture.
 
-[Debian GNU/Linux](https://www.debian.org/) desktop operating system for personal computers & workstations.
+Apart from usual kiwi configurations, there is some configuration mangling (.in files) via `Makefile`, so I would not recommend
+tweaking configurations directly unless you know what you are doing. Take a look especially at `make help`.
 
-![](https://gitlab.com/nodiscc/toolbox/-/raw/master/DOC/SCREENSHOTS/debian-live-config-4.0.0-main.png)
+*bsp* folder is a board support packaging folder: it stores tweaks that some software may need in order to work well with
+the machine in question. Upstreaming configurations should be the norm, but sometimes this configuration may not be upstreamable,
+hence putting in here. I recommend running `make bsp-pull` periodically.
 
-## Features
+## Build
 
-- Ready-to-use operating system for personal computers/workstations
-- Preinstalled, preconfigured software for common tasks (office, multimedia, network...)
-- Good out-of-the-box experience with a focus on usability
-- Installation time < 10 minutes, without Internet access
-- Able to run [live](https://en.wikipedia.org/wiki/Live_USB) from USB drive (no installation required)
-- Fits on a 2GB USB drive
-- Only uses official Debian [stable](https://wiki.debian.org/DebianStable) + [backports](https://wiki.debian.org/Backports) packages and as few third-party components as possible
-- Reliable, low maintenance
-- Lightweight/low resource usage, good performance on low-end or recycled hardware
-- Proprietary drivers/firmware for good compatibility with recent hardware
+    make <platform> DISTRO=<debian|alpine|pmos> TIER=<workstation|server> [RELEASE=<release>] [COMPRESS=0|1] [LOCALE=<locale>] [TIMEZONE=<timezone>] [KEYTABLE=<keytable>] [USERNAME=<name>] [PASSWORD=<password>]
 
-This repository contains the `live-build` configuration and scripts used to build a custom Debian ISO image. See [Building a custom Debian ISO image](doc/md/custom.md).
+### With Docker
 
+    make docker-pc-x86_64 DISTRO=debian TIER=workstation
 
-## Download
+Foreign-arch platforms need QEMU binfmt registered on the host, once:
 
-**[![](doc/md/download.png) Download .ISO image](https://github.com/nodiscc/debian-live-config/releases/download/4.2.1/debian-live-config-4.2.1-debian-bookworm-amd64.iso)** (64-bit)
+    docker run --privileged --rm tonistiigi/binfmt --install all
 
+## Output
 
-## Documentation
+See `build/<platform>_<distro>-<release>-<arch>-<tier>_<version>.img.xz` (or `.img` if built with `COMPRESS=0`); `<version>` is a build timestamp (`YYYYMMDDHHmmss`).
 
-- [Download and installation](doc/md/download-and-installation.md)
-- [Usage](doc/md/usage.md)
-- [Software: Utility](doc/md/packages/utility.md)
-- [Software: Internet and network](doc/md/packages/network.md)
-- [Software: Audio and video](doc/md/packages/audio-video.md)
-- [Software: Office](doc/md/packages/office.md)
-- [Software: Graphics](doc/md/packages/graphics.md)
-- [Software: System](doc/md/packages/system.md)
-- [Software: Development](doc/md/packages/development.md)
-- [Software: Games](doc/md/packages/games.md)
-- [Software: Extras](doc/md/packages/extras.md)
-- [Changelog](CHANGELOG.md)
+## Layout
 
+- `components/<distro>/*.xml`: package lists per distro
+- `platforms/*.xml`: per-device settings and packages
+- `preferences/`, `repositories/`, `users/`: distro-wide config, package sources, default account
+- `includes/profiles.xml`: how platform, distro, and tier combine
+- `bsp/`: device overlay files, fetch updates via `make bsp-pull`
+- `scripts/`: build helpers (fetch/apply BSP, finalize image, lint profile order)
+- `config.xml.in`, `config.sh`, `post_bootstrap.sh.in`, `pre_disk_sync.sh`: image description and chroot scripts (`.in` files are mangled by `Makefile` before use)
+- `docker-compose.yml`, `Dockerfile`: builder container definition
 
-## Screenshots
+## References
 
-![](https://gitlab.com/nodiscc/toolbox/-/raw/master/DOC/SCREENSHOTS/debian-live-config-4.0.0-main.png)
-
-![](https://gitlab.com/nodiscc/toolbox/-/raw/master/DOC/SCREENSHOTS/debian-live-config-4.0.0-windows.png)
-
-
-## Source code
-
-- [Gitlab](https://gitlab.com/nodiscc/debian-live-config) (mirror)
-- [Github](https://github.com/nodiscc/debian-live-config) (mirror)
-
+- [KIWI-NG](https://github.com/OSInside/kiwi): image builder
+- [Docker](https://www.docker.com/): isolated builds
+- [xmllint](http://xmlsoft.org/): XML validation and formatting
+- [shellcheck](https://www.shellcheck.net/): shell script linting
+- [shfmt](https://github.com/scop/shfmt): shell script formatting
+- [QEMU](https://www.qemu.org/): foreign architecture emulation
 
 ## License
 
 [LICENSE](LICENSE)
-
