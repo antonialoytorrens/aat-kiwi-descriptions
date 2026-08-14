@@ -1,6 +1,16 @@
 #!/bin/bash
 set -eu -o pipefail
 
+# Preseed locale/timezone debconf, before install, if debconf available (Debian only).
+if command -v debconf-set-selections >/dev/null 2>&1; then
+    debconf-set-selections <<'EOF'
+locales locales/locales_to_be_generated multiselect ca_ES.UTF-8 UTF-8, es_ES.UTF-8 UTF-8, en_US.UTF-8 UTF-8
+locales locales/default_environment_locale select ca_ES.UTF-8
+tzdata tzdata/Areas select Europe
+tzdata tzdata/Zones/Europe select Madrid
+EOF
+fi
+
 # Remove kiwi leftovers we don't need
 # https://github.com/OSInside/kiwi/issues/2343#issuecomment-1663427508
 rm -rf /boot/mbrid /config.bootoptions /config.partids

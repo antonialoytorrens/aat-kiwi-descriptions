@@ -1,7 +1,7 @@
 <image>
     <!-- Minix NEO X8-H -->
     <preferences profiles="minix-neox8h">
-        <type image="oem" initrd_system="dracut" filesystem="ext4" bootpartition="true" bootfilesystem="fat16" bootpartsize="256" firmware="custom" editbootconfig="minix-neox8h/boot/edit_boot_config.sh">
+        <type image="oem" initrd_system="dracut" filesystem="btrfs" bootpartition="true" bootfilesystem="fat16" bootpartsize="256" firmware="custom" editbootconfig="minix-neox8h/boot/edit_boot_config.sh">
             <bootloader name="custom"/>
             <oemconfig>
                 <oem-resize>true</oem-resize>

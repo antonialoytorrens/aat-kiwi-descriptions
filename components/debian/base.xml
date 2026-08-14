@@ -33,7 +33,9 @@
         <!--<package name="hw-probe"/>
         <package name="fastfetch"/>-->
     </packages>
-    <packages type="bootstrap" />
+    <packages type="bootstrap" profiles="common_debian">
+        <package name="debconf"/>
+    </packages>
 
     <!-- Asus TF101 -->
     <packages type="image" profiles="asus-tf101_debian">

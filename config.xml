@@ -9,25 +9,12 @@
     <!-- Shared Profiles -->
     <include from="this://./includes/profiles.xml"/>
 
-    <!-- Debian/derivative Preferences -->
-    <preferences profiles="common_debian">
-        <version>1.0.0</version>
-        <packagemanager>apt</packagemanager>
-        <bootsplash-theme>ceratopsian</bootsplash-theme>
-        <bootloader-theme>live-theme</bootloader-theme>
-        <!--<locale>ca_ES</locale>
-        <timezone>Europe/Madrid</timezone>
-        <keytable>es-cat</keytable>-->
-    </preferences>
+    <!-- Preferences -->
+    <include from="this://./preferences/debian.xml"/>
+    <include from="this://./preferences/alpine.xml"/>
 
-    <!-- Alpine/pmOS Preferences -->
-    <preferences profiles="common_alpine">
-        <version>1.0.0</version>
-        <packagemanager>apk</packagemanager>
-        <!--<locale>ca_ES</locale>
-        <timezone>Europe/Madrid</timezone>
-        <keytable>es-cat</keytable>-->
-    </preferences>
+    <!-- Users -->
+    <include from="this://./users/debian.xml"/>
 
     <!-- Repositories -->
     <include from="this://./repositories/debian.xml"/>

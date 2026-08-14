@@ -1,35 +1,6 @@
 #!/bin/bash
 set -euxo pipefail
 
-# Locale
-echo "Configuring Locales..."
-# Generate requested locales
-{
-    echo "ca_ES.UTF-8 UTF-8"
-    echo "es_ES.UTF-8 UTF-8"
-    echo "en_US.UTF-8 UTF-8"
-} >> /etc/locale.gen
-locale-gen
-# Set default locale to ca_ES.UTF-8
-update-locale LANG=ca_ES.UTF-8
-
-# Timezone
-echo "Europe/Madrid" > /etc/timezone
-ln -sf /usr/share/zoneinfo/Europe/Madrid /etc/localtime
-
-# Users
-echo "Configuring Users..."
-useradd -m -s /bin/bash user
-echo "user:live" | chpasswd
-
-# Groups
-for g in cdrom floppy sudo audio dip video plugdev netdev bluetooth lpadmin scanner; do
-    groupadd -f "$g"
-done
-
-# Picked from standard debian user (groups $(whoami) )
-usermod -aG cdrom,floppy,sudo,audio,dip,video,plugdev,netdev,bluetooth,lpadmin,scanner user
-
 # Network
 echo "Configuring Network..."
 # Enable systemd-networkd if needed, or NetworkManager

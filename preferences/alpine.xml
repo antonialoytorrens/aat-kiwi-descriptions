@@ -1,0 +1,11 @@
+<image>
+    <!-- Alpine/pmOS Preferences -->
+    <preferences profiles="common_alpine">
+        <version>1.0.0</version>
+        <packagemanager>apk</packagemanager>
+	<!-- ! Needs systemd-firstboot ! -->
+        <!--<locale>ca_ES</locale>
+        <timezone>Europe/Madrid</timezone>
+        <keytable>es-cat</keytable>-->
+    </preferences>
+</image>

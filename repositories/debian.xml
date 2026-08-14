@@ -1,11 +1,15 @@
 <image>
     <!-- 12 (Bookworm) -->
-    <!--<repository type="apt-deb" distribution="bookworm" components="main contrib non-free non-free-firmware" repository_gpgcheck="false" profiles="debian_12">
+    <repository type="apt-deb" distribution="bookworm" components="main contrib non-free non-free-firmware" repository_gpgcheck="false" profiles="debian_12">
         <source path="http://deb.debian.org/debian"/>
     </repository>
     <repository type="apt-deb" distribution="bookworm-security" components="main contrib non-free non-free-firmware" repository_gpgcheck="false" profiles="debian_12">
         <source path="http://security.debian.org/debian-security"/>
-    </repository>-->
+    </repository>
+    <!-- Necessary for kernel packages -->
+    <repository type="apt-deb" distribution="trixie" components="main" repository_gpgcheck="false" profiles="debian_12">
+        <source path="http://dports.antonialoytorrens.com/aat-debkernel-repository/debian"/>
+    </repository>
 
     <!-- 13 (Trixie) -->
     <repository type="apt-deb" distribution="trixie" components="main contrib non-free non-free-firmware" repository_gpgcheck="false" profiles="debian_13">

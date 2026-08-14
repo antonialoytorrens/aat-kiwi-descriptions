@@ -1,0 +1,13 @@
+<image>
+    <!-- Debian/derivative Users -->
+    <users profiles="common_debian">
+        <user
+            name="linux"
+            password="changeme"
+            pwdformat="plain"
+            home="/home/linux"
+            shell="/bin/bash"
+            groups="linux,sudo,audio,dip,video,plugdev,netdev,bluetooth,lpadmin,scanner,cdrom,floppy"
+        />
+    </users>
+</image>
