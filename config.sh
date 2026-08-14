@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euxo pipefail
 
+echo "Executing $0 ..."
+
 # Network
 echo "Configuring Network..."
 # Enable systemd-networkd if needed, or NetworkManager
@@ -37,5 +39,7 @@ if [ -f /postinst.sh ]; then
     bash /postinst.sh
     rm -f /postinst.sh
 fi
+
+echo "Finished executing $0 ."
 
 exit 0
