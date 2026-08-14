@@ -25,8 +25,8 @@ COMPOSE  := docker compose
 SERVICE  := aat-kiwi-builder
 
 # File listing
-XML_FILES := $(shell find . \( -path "./$(BUILD_DIR)" -o -path "./bsp" \) -prune -o -name "*.xml" -print)
-SHELL_SCRIPTS := config.sh post_bootstrap.sh pre_disk_sync.sh scripts/finalize_image.sh
+XML_FILES := $(shell find . \( -path "./$(BUILD_DIR)" -o -path "./bsp" \) -prune -o \( -name "*.xml" -o -name "*.xml.in" \) -print)
+SHELL_SCRIPTS := config.sh post_bootstrap.sh.in pre_disk_sync.sh scripts/finalize_image.sh scripts/fetch_bsp.sh scripts/apply_bsp.sh scripts/lint_profile_order.sh
 
 # Docker-wrapped equivalents of the host-direct targets below, e.g. docker-pc-x86_64
 DOCKER_TARGETS := $(addprefix docker-,$(PLATFORMS) lint format clean bsp-pull)
@@ -40,8 +40,9 @@ help:
 	@echo "Example (native, on host):     make pc-x86_64 DISTRO=debian TIER=workstation"
 	@echo "Example (isolated, in Docker): make docker-pc-x86_64 DISTRO=debian TIER=workstation"
 	@echo ""
-	@echo "Build output is <name>.<arch>-<version>.img.xz if compression is set."
-	@echo "Otherwise, build output is <name>.<arch>-<version>.img."
+	@echo "Build output is <platform>_<distro>-<release>-<arch>-<tier>_<version>.img.xz if compression is set."
+	@echo "Otherwise, build output is <platform>_<distro>-<release>-<arch>-<tier>_<version>.img."
+	@echo "<version> is a build timestamp (YYYYMMDDHHmmss)."
 	@echo ""
 	@echo "Available platforms and their distros:"
 	@for p in $(PLATFORMS); do \
@@ -79,7 +80,7 @@ clean:
 
 # Board Support Packaging (can be empty for specific platforms)
 bsp-pull:
-	@python3 scripts/fetch_bsp.py --repo $(BSP_REPO) --branch $(BSP_BRANCH)
+	@scripts/fetch_bsp.sh --repo $(BSP_REPO) --branch $(BSP_BRANCH)
 
 # Build targets: make <platform> DISTRO=<distro> TIER=<workstation|server> [RELEASE=<release>] [LOCALE=<locale>] [TIMEZONE=<timezone>] [KEYTABLE=<keytable>] [USERNAME=<username>] [PASSWORD=<password>]
 $(PLATFORMS):
@@ -93,6 +94,7 @@ $(PLATFORMS):
 	printf '%s\n' $$releases | grep -qx "$$release" || { \
 		echo "ERROR: RELEASE must be one of: $$releases for DISTRO=$(DISTRO), got '$$release'"; exit 1; \
 	}; \
+	version=$$(date +%Y%m%d%H%M%S); \
 	profile="$@_$(DISTRO)"; \
 	printf '%s\n' $(PROFILES) | grep -qx "$$profile" || { \
 		echo "ERROR: no such profile '$$profile'. Valid distros for $@: $$(printf '%s\n' $(PROFILES) | grep "^$@_" | sed "s/^$@_//" | tr '\n' ' ')"; \
@@ -103,22 +105,22 @@ $(PLATFORMS):
 	for f in includes platforms components repositories config.sh pre_disk_sync.sh; do \
 		ln -sfn "$(CURDIR)/$$f" "$$descdir/$$f"; \
 	done; \
-	sed -e 's#__KEYTABLE__#$(KEYTABLE)#g' \
-	    "$(CURDIR)/post_bootstrap.sh" > "$$descdir/post_bootstrap.sh"; \
+	sed -e 's#@KEYTABLE@#$(KEYTABLE)#g' \
+	    "$(CURDIR)/post_bootstrap.sh.in" > "$$descdir/post_bootstrap.sh"; \
 	mkdir -p "$$descdir/preferences"; \
 	ln -sfn "$(CURDIR)/preferences/alpine.xml" "$$descdir/preferences/alpine.xml"; \
-	sed -e 's#<locale></locale>#<locale>$(LOCALE)</locale>#' \
-	    -e 's#<timezone></timezone>#<timezone>$(TIMEZONE)</timezone>#' \
-	    "$(CURDIR)/preferences/debian.xml" > "$$descdir/preferences/debian.xml"; \
+	sed -e 's#@LOCALE@#$(LOCALE)#' \
+	    -e 's#@TIMEZONE@#$(TIMEZONE)#' \
+	    -e 's#@VERSION@#'"$$version"'#' \
+	    "$(CURDIR)/preferences/debian.xml.in" > "$$descdir/preferences/debian.xml"; \
 	mkdir -p "$$descdir/users"; \
-	sed -e 's#name=""#name="$(USERNAME)"#' \
-	    -e 's#password=""#password="$(PASSWORD)"#' \
-	    -e 's#__USERNAME__#$(USERNAME)#g' \
-	    "$(CURDIR)/users/debian.xml" > "$$descdir/users/debian.xml"; \
-	sed -e 's/ name=""/ name="$(DISTRO)-'"$$release"'_$@"/' \
-	    -e 's/ displayname=""/ displayname="$(DISTRO)-'"$$release"'_$@_$(KIWI_VERSION)"/' \
-	    "$(CURDIR)/config.xml" > "$$descdir/config.xml"; \
-	python3 scripts/apply_bsp.py --device "$@" --distribution "$(DISTRO)" --release "$$release" --target "$$descdir/$@"; \
+	sed -e 's#@USERNAME@#$(USERNAME)#g' \
+	    -e 's#@PASSWORD@#$(PASSWORD)#' \
+	    "$(CURDIR)/users/debian.xml.in" > "$$descdir/users/debian.xml"; \
+	sed -e 's/@NAME@/$(DISTRO)-'"$$release"'_$@/' \
+	    -e 's/@DISPLAYNAME@/$(DISTRO)-'"$$release"'_$@_$(KIWI_VERSION)/' \
+	    "$(CURDIR)/config.xml.in" > "$$descdir/config.xml"; \
+	scripts/apply_bsp.sh --device "$@" --distribution "$(DISTRO)" --release "$$release" --target "$$descdir/$@"; \
 	build_profile="$$profile,$(TIER),$(DISTRO)_$$release"; \
 	outdir="$(BUILD_DIR)/$${profile}_$(TIER)_$$release"; \
 	arch=$$(grep "name=\"$@\"" includes/profiles.xml | grep -o 'arch="[^"]*"' | cut -d'"' -f2); \
@@ -127,13 +129,13 @@ $(PLATFORMS):
 	# This directory shall be created, otherwise debian keyring fails \
 	$(SU) mkdir -p /var/cache/kiwi/apt-get/trusted.gpg.d; \
 	$(SU) kiwi-ng $${arch:+--target-arch "$$arch"} --profile "$$profile" --profile "$(TIER)" --profile "$(DISTRO)_$$release" system build --description "$$descdir" --target-dir "$$outdir"; \
-	$(SU) scripts/finalize_image.sh "$$outdir" "$(COMPRESS)"
+	$(SU) scripts/finalize_image.sh "$$outdir" "$(COMPRESS)" "$@" "$(DISTRO)" "$$release" "$${arch:-host}" "$(TIER)" "$$version"
 
 lint:
 	@echo "Linting XML descriptions (xmllint)..."
 	@for f in $(XML_FILES); do xmllint --noout "$$f" || exit 1; done
 	@echo "Linting XML ordering (common_* profiles first + alphabetical, include from= alphabetical)..."
-	@python3 scripts/lint_profile_order.py $(XML_FILES)
+	@scripts/lint_profile_order.sh $(XML_FILES)
 	@echo "Linting shell scripts (shellcheck)..."
 	@shellcheck $(SHELL_SCRIPTS)
 	@echo "Lint OK"
