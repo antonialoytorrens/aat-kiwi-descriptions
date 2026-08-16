@@ -26,7 +26,7 @@ SERVICE  := aat-kiwi-builder
 
 # File listing
 XML_FILES := $(shell find . \( -path "./$(BUILD_DIR)" -o -path "./bsp" \) -prune -o \( -name "*.xml" -o -name "*.xml.in" \) -print)
-SHELL_SCRIPTS := config.sh post_bootstrap.sh.in pre_disk_sync.sh scripts/finalize_image.sh scripts/fetch_bsp.sh scripts/apply_bsp.sh scripts/lint_profile_order.sh
+SHELL_SCRIPTS := config.sh.in post_bootstrap.sh.in pre_disk_sync.sh scripts/finalize_image.sh scripts/fetch_bsp.sh scripts/apply_bsp.sh scripts/lint_profile_order.sh
 
 # Docker-wrapped equivalents of the host-direct targets below, e.g. docker-pc-x86_64
 DOCKER_TARGETS := $(addprefix docker-,$(PLATFORMS) lint format clean bsp-pull)
@@ -36,7 +36,7 @@ DOCKER_TARGETS := $(addprefix docker-,$(PLATFORMS) lint format clean bsp-pull)
 all: help
 
 help:
-	@echo "Usage: make <platform> DISTRO=<$(DISTRO_ALT)> TIER=<workstation|server> [RELEASE=<release>] [COMPRESS=0|1] [LOCALE=<locale>] [TIMEZONE=<timezone>] [KEYTABLE=<keytable>] [USERNAME=<username>] [PASSWORD=<password>]"
+	@echo "Usage: make <platform> DISTRO=<$(DISTRO_ALT)> TIER=<workstation|server> [RELEASE=<release>] [COMPRESS=0|1] [LOCALE=<locale>] [TIMEZONE=<timezone>] [KEYTABLE=<keytable>] [USERNAME=<username>] [PASSWORD=<password>] [HOSTNAME=<hostname>]"
 	@echo "Example (native, on host):     make pc-x86_64 DISTRO=debian TIER=workstation"
 	@echo "Example (isolated, in Docker): make docker-pc-x86_64 DISTRO=debian TIER=workstation"
 	@echo ""
@@ -102,11 +102,13 @@ $(PLATFORMS):
 	}; \
 	descdir="$(CURDIR)/$(BUILD_DIR)/description"; \
 	mkdir -p "$$descdir"; \
-	for f in includes platforms components repositories config.sh pre_disk_sync.sh; do \
+	for f in includes platforms components repositories pre_disk_sync.sh; do \
 		ln -sfn "$(CURDIR)/$$f" "$$descdir/$$f"; \
 	done; \
 	sed -e 's#@KEYTABLE@#$(KEYTABLE)#g' \
 	    "$(CURDIR)/post_bootstrap.sh.in" > "$$descdir/post_bootstrap.sh"; \
+	sed -e 's#@HOSTNAME@#$(HOSTNAME)#g' \
+	    "$(CURDIR)/config.sh.in" > "$$descdir/config.sh"; \
 	mkdir -p "$$descdir/preferences"; \
 	ln -sfn "$(CURDIR)/preferences/alpine.xml" "$$descdir/preferences/alpine.xml"; \
 	sed -e 's#@LOCALE@#$(LOCALE)#' \

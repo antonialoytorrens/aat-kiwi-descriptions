@@ -13,7 +13,7 @@ hence putting in here. I recommend running `make bsp-pull` periodically.
 
 ## Build
 
-    make <platform> DISTRO=<debian|alpine|pmos> TIER=<workstation|server> [RELEASE=<release>] [COMPRESS=0|1] [LOCALE=<locale>] [TIMEZONE=<timezone>] [KEYTABLE=<keytable>] [USERNAME=<name>] [PASSWORD=<password>]
+    make <platform> DISTRO=<debian|alpine|pmos> TIER=<workstation|server> [RELEASE=<release>] [COMPRESS=0|1] [LOCALE=<locale>] [TIMEZONE=<timezone>] [KEYTABLE=<keytable>] [USERNAME=<name>] [PASSWORD=<password>] [HOSTNAME=<hostname>]
 
 ### With Docker
 
