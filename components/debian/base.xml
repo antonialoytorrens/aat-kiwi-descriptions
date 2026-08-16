@@ -22,6 +22,7 @@
         <package name="keyboard-configuration"/>
         <package name="less"/>
         <package name="locales"/>
+        <package name="login"/>
         <package name="net-tools"/>
         <package name="network-manager"/>
         <package name="openssh-server"/>
