@@ -14,5 +14,7 @@
         <package name="linux-image-m8x"/>
         <package name="u-boot-tools"/>
         <!-- Firmware is included in bsp repository -->
+	<!-- Extra firmware (possible USB-WiFi/BT) -->
+        <package name="firmware-linux"/>
     </packages>
 </image>
