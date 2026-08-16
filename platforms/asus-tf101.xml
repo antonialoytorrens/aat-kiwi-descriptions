@@ -12,7 +12,7 @@
     <!-- Debian -->
     <packages type="image" profiles="asus-tf101_debian">
         <package name="linux-image-asus-tf101"/>
-        <package name="u-boot-asus-tf101"/>
+        <!--<package name="u-boot-asus-tf101"/>-->
         <package name="u-boot-menu"/>
     </packages>
 
