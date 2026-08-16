@@ -35,7 +35,7 @@ See `build/<platform>_<distro>-<release>-<arch>-<tier>_<version>.img.xz` (or `.i
 - `includes/profiles.xml`: how platform, distro, and tier combine
 - `bsp/`: device overlay files, fetch updates via `make bsp-pull`
 - `scripts/`: build helpers (fetch/apply BSP, finalize image, lint profile order)
-- `config.xml.in`, `config.sh`, `post_bootstrap.sh.in`, `pre_disk_sync.sh`: image description and chroot scripts (`.in` files are mangled by `Makefile` before use)
+- `config.xml.in`, `config.sh.in`, `post_bootstrap.sh.in`, `pre_disk_sync.sh`: image description and chroot scripts (`.in` files are mangled by `Makefile` before use)
 - `docker-compose.yml`, `Dockerfile`: builder container definition
 
 ## References

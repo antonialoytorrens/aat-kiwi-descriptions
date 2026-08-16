@@ -7,3 +7,6 @@ __pycache__/
 
 # Board support package clone, fetched by scripts/fetch_bsp.py (make bsp-pull).
 /bsp/
+
+# Generated config.sh
+config.sh
