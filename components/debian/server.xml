@@ -1,4 +1,12 @@
 <image>
-    <!-- TODO: Debian-specific server-tier packages (profiles="server") -->
-    <!-- e.g. monitoring agents, cloud-init -->
+    <packages type="image" profiles="server" patternType="plusRecommended">
+        <package name="curl"/>
+        <package name="fastfetch"/>
+        <package name="hw-probe"/>
+        <package name="iputils-ping"/>
+        <package name="nano"/>
+        <package name="net-tools"/>
+        <package name="vim"/>
+        <package name="wget"/>
+    </packages>
 </image>

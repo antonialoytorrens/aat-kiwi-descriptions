@@ -3,41 +3,31 @@
         <package name="debconf"/>
     </packages>
     <packages type="image" profiles="common_debian">
-        <package name="acl"/>
-        <package name="attr"/>
         <package name="apt"/>
         <package name="bash"/>
         <package name="ca-certificates"/>
         <package name="coreutils"/>
-        <package name="curl"/>
+        <package name="console-data"/>
         <package name="dbus"/>
         <package name="dracut"/>
         <package name="kiwi-dracut-oem-repart"/>
         <package name="e2fsprogs"/>
         <package name="fdisk"/>
         <package name="iproute2"/>
-        <package name="iputils-ping"/>
         <package name="kbd"/>
-        <package name="console-data"/>
         <package name="keyboard-configuration"/>
-        <package name="less"/>
         <package name="locales"/>
         <package name="login"/>
-        <package name="net-tools"/>
         <package name="network-manager"/>
         <package name="openssh-server"/>
+        <package name="wpasupplicant"/>
         <package name="passwd"/>
         <package name="procps"/>
         <package name="sudo"/>
         <package name="systemd"/>
         <package name="systemd-sysv"/>
+        <package name="systemd-timesyncd"/>
         <package name="unattended-upgrades"/>
         <package name="util-linux"/>
-        <package name="vim"/>
-        <package name="wget"/>
-
-        <!-- Non-essential, but very useful -->
-        <!--<package name="hw-probe"/>
-        <package name="fastfetch"/>-->
     </packages>
 </image>
