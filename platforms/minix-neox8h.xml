@@ -16,5 +16,6 @@
         <!-- Firmware is included in bsp repository -->
 	<!-- Extra firmware (possible USB-WiFi/BT) -->
         <package name="firmware-linux"/>
+        <package name="firmware-realtek"/>
     </packages>
 </image>
