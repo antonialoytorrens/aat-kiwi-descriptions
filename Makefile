@@ -112,9 +112,9 @@ $(PLATFORMS):
 	mkdir -p "$$descdir/root/etc"; \
 	cp -a "$(CURDIR)/root/." "$$descdir/root/"; \
 	sed -e 's#@HOSTNAME@#$(HOSTNAME)#g' \
-	    "$(CURDIR)/etc/hostname.in" > "$$descdir/root/etc/hostname"; \
+	    "$(CURDIR)/templates/hostname.in" > "$$descdir/root/etc/hostname"; \
 	sed -e 's#@HOSTNAME@#$(HOSTNAME)#g' \
-	    "$(CURDIR)/etc/hosts.in" > "$$descdir/root/etc/hosts"; \
+	    "$(CURDIR)/templates/hosts.in" > "$$descdir/root/etc/hosts"; \
 	mkdir -p "$$descdir/preferences"; \
 	ln -sfn "$(CURDIR)/preferences/alpine.xml" "$$descdir/preferences/alpine.xml"; \
 	sed -e 's#@LOCALE@#$(LOCALE)#' \
