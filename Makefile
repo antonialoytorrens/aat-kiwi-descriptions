@@ -109,6 +109,12 @@ $(PLATFORMS):
 	    "$(CURDIR)/post_bootstrap.sh.in" > "$$descdir/post_bootstrap.sh"; \
 	sed -e 's#@HOSTNAME@#$(HOSTNAME)#g' \
 	    "$(CURDIR)/config.sh.in" > "$$descdir/config.sh"; \
+	mkdir -p "$$descdir/root/etc"; \
+	cp -a "$(CURDIR)/root/." "$$descdir/root/"; \
+	sed -e 's#@HOSTNAME@#$(HOSTNAME)#g' \
+	    "$(CURDIR)/etc/hostname.in" > "$$descdir/root/etc/hostname"; \
+	sed -e 's#@HOSTNAME@#$(HOSTNAME)#g' \
+	    "$(CURDIR)/etc/hosts.in" > "$$descdir/root/etc/hosts"; \
 	mkdir -p "$$descdir/preferences"; \
 	ln -sfn "$(CURDIR)/preferences/alpine.xml" "$$descdir/preferences/alpine.xml"; \
 	sed -e 's#@LOCALE@#$(LOCALE)#' \

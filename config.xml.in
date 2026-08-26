@@ -1,38 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<image schemaversion="7.4" name="@NAME@" displayname="@DISPLAYNAME@" xmlns:xi="http://www.w3.org/2001/XInclude">
-    <description type="system">
-        <author>Antoni Aloy Torrens</author>
-        <contact>aaloytorrens@gmail.com</contact>
-        <specification>AAT Kiwi Sample Config (Kiwi-NG)</specification>
-    </description>
-
-    <!-- Shared Profiles -->
-    <include from="this://./includes/profiles.xml"/>
-
-    <!-- Preferences -->
-    <include from="this://./preferences/debian.xml"/>
-    <include from="this://./preferences/alpine.xml"/>
-
-    <!-- Users -->
-    <include from="this://./users/debian.xml"/>
-
-    <!-- Repositories -->
-    <include from="this://./repositories/debian.xml"/>
-    <include from="this://./repositories/alpine.xml"/>
-    <include from="this://./repositories/pmos.xml"/>
-
-    <!-- Components -->
-    <include from="this://./components/alpine/base.xml"/>
-    <include from="this://./components/debian/base.xml"/>
-    <include from="this://./components/debian/server.xml"/>
-    <include from="this://./components/debian/workstation.xml"/>
-    <include from="this://./components/pmos/base.xml"/>
-
-    <!-- Platforms -->
-    <include from="this://./platforms/asus-tf101.xml"/>
-    <include from="this://./platforms/minix-neox8h.xml"/>
-    <include from="this://./platforms/odroid-u3.xml"/>
-    <include from="this://./platforms/pc-i386.xml"/>
-    <include from="this://./platforms/pc-x86_64.xml"/>
-
+<image xmlns:xi="http://www.w3.org/2001/XInclude" schemaversion="7.4" name="@NAME@" displayname="@DISPLAYNAME@">
+  <description type="system">
+    <author>Antoni Aloy Torrens</author>
+    <contact>aaloytorrens@gmail.com</contact>
+    <specification>AAT Kiwi Sample Config (Kiwi-NG)</specification>
+  </description>
+  <!-- Shared Profiles -->
+  <include from="this://./includes/profiles.xml"/>
+  <!-- Preferences -->
+  <include from="this://./preferences/debian.xml"/>
+  <include from="this://./preferences/alpine.xml"/>
+  <!-- Users -->
+  <include from="this://./users/debian.xml"/>
+  <!-- Repositories -->
+  <include from="this://./repositories/debian.xml"/>
+  <include from="this://./repositories/alpine.xml"/>
+  <include from="this://./repositories/pmos.xml"/>
+  <!-- Components -->
+  <include from="this://./components/alpine/base.xml"/>
+  <include from="this://./components/debian/base.xml"/>
+  <include from="this://./components/debian/server.xml"/>
+  <include from="this://./components/debian/workstation.xml"/>
+  <include from="this://./components/pmos/base.xml"/>
+  <!-- Platforms -->
+  <include from="this://./platforms/asus-tf101.xml"/>
+  <include from="this://./platforms/minix-neox8h.xml"/>
+  <include from="this://./platforms/odroid-u3.xml"/>
+  <include from="this://./platforms/pc-i386.xml"/>
+  <include from="this://./platforms/pc-x86_64.xml"/>
 </image>

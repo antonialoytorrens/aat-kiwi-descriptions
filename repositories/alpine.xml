@@ -1,8 +1,9 @@
+<?xml version="1.0"?>
 <image>
-    <repository type="apk" alias="alpine-3.24" profiles="alpine_v3.24">
-        <source path="http://dl-cdn.alpinelinux.org/alpine/v3.24/main"/>
-    </repository>
-    <repository type="apk" alias="alpine-3.24-community" profiles="alpine_v3.24">
-        <source path="http://dl-cdn.alpinelinux.org/alpine/v3.24/community"/>
-    </repository>
+  <repository type="apk" alias="alpine-3.24" profiles="alpine_v3.24">
+    <source path="http://dl-cdn.alpinelinux.org/alpine/v3.24/main"/>
+  </repository>
+  <repository type="apk" alias="alpine-3.24-community" profiles="alpine_v3.24">
+    <source path="http://dl-cdn.alpinelinux.org/alpine/v3.24/community"/>
+  </repository>
 </image>

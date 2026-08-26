@@ -1,5 +1,6 @@
+<?xml version="1.0"?>
 <image>
-    <packages type="image" profiles="workstation" patternType="plusRecommended">
-        <package name="task-xfce-desktop"/>
-    </packages>
+  <packages type="image" profiles="workstation" patternType="plusRecommended">
+    <package name="task-xfce-desktop"/>
+  </packages>
 </image>

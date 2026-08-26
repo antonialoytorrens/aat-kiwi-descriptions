@@ -1,4 +1,5 @@
+<?xml version="1.0"?>
 <image>
-    <!-- pmOS-common packages (profiles="common_alpine") go here. -->
-    <!-- Platform-specific pmOS packages live in platforms/$platform.xml. -->
+  <!-- pmOS-common packages (profiles="common_alpine") go here. -->
+  <!-- Platform-specific pmOS packages live in platforms/$platform.xml. -->
 </image>

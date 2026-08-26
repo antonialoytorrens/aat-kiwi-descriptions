@@ -1,5 +1,6 @@
+<?xml version="1.0"?>
 <image>
-    <repository type="apk" alias="postmarketos" profiles="pmos_v26.06">
-        <source path="http://mirror.postmarketos.org/postmarketos/v26.06"/>
-    </repository>
+  <repository type="apk" alias="postmarketos" profiles="pmos_v26.06">
+    <source path="http://mirror.postmarketos.org/postmarketos/v26.06"/>
+  </repository>
 </image>

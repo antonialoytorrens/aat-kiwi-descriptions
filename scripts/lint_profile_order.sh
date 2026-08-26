@@ -23,9 +23,9 @@ fi
 # in alphabetical order.
 check_profile_order() {
 	f=$1
-	xmllint --xpath '/*/*[self::packages or self::preferences][@profiles]/@profiles' "$f" 2>/dev/null \
-		| sed -n 's/^ profiles="\(.*\)"$/\1/p' \
-		| awk -v path="$f" -v q="'" '
+	xmllint --xpath '/*/*[self::packages or self::preferences][@profiles]/@profiles' "$f" 2>/dev/null |
+		sed -n 's/^ profiles="\(.*\)"$/\1/p' |
+		awk -v path="$f" -v q="'" '
 			{
 				profiles_attr = $0
 				n = split(profiles_attr, names, ",")
@@ -62,9 +62,9 @@ check_profile_order() {
 # plain byte-string sort match folder-then-file order).
 check_include_order() {
 	f=$1
-	xmllint --xpath '//include/@from' "$f" 2>/dev/null \
-		| sed -n 's/^ from="\(.*\)"$/\1/p' \
-		| awk -v path="$f" -v q="'" '
+	xmllint --xpath '//include/@from' "$f" 2>/dev/null |
+		sed -n 's/^ from="\(.*\)"$/\1/p' |
+		awk -v path="$f" -v q="'" '
 			function sentinel_key(s,   r) {
 				r = s
 				gsub(/\//, "\001", r)

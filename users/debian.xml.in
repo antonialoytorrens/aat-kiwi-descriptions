@@ -1,12 +1,6 @@
+<?xml version="1.0"?>
 <image>
-    <users profiles="common_debian">
-        <user
-            name="@USERNAME@"
-            password="@PASSWORD@"
-            pwdformat="plain"
-            home="/home/@USERNAME@"
-            shell="/bin/bash"
-            groups="@USERNAME@,sudo,audio,dip,video,plugdev,netdev,bluetooth,lpadmin,scanner,cdrom,floppy"
-        />
-    </users>
+  <users profiles="common_debian">
+    <user name="@USERNAME@" password="@PASSWORD@" pwdformat="plain" home="/home/@USERNAME@" shell="/bin/bash" groups="@USERNAME@,sudo,audio,dip,video,plugdev,netdev,bluetooth,lpadmin,scanner,cdrom,floppy"/>
+  </users>
 </image>

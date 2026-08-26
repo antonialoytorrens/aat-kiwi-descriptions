@@ -1,29 +1,28 @@
+<?xml version="1.0"?>
 <image>
-    <!-- Odroid U3 -->
-    <preferences profiles="odroid-u3">
-        <type image="oem" initrd_system="dracut" filesystem="ext4" bootpartition="true" bootfilesystem="fat16" bootpartsize="128" firmware="custom">
-            <bootloader name="custom"/>
-            <oemconfig>
-                <oem-resize>true</oem-resize>
-            </oemconfig>
-        </type>
-    </preferences>
-
-    <!-- Debian -->
-    <packages type="image" profiles="odroid-u3_debian">
-        <package name="linux-image-armmp"/>
-        <package name="u-boot-tools"/>
-    </packages>
-
-    <!-- Alpine -->
-    <packages type="image" profiles="odroid-u3_alpine">
-        <package name="linux-lts"/>
-        <package name="uboot-tools"/>
-    </packages>
-
-    <!-- pmOS -->
-    <packages type="image" profiles="odroid-u3_pmos">
-        <package name="linux-odroid-u2"/> <!-- Example specific kernel if available in pmos -->
-        <package name="postmarketos-base"/>
-    </packages>
+  <!-- Odroid U3 -->
+  <preferences profiles="odroid-u3">
+    <type image="oem" initrd_system="dracut" filesystem="ext4" bootpartition="true" bootfilesystem="fat16" bootpartsize="128" firmware="custom">
+      <bootloader name="custom"/>
+      <oemconfig>
+        <oem-resize>true</oem-resize>
+      </oemconfig>
+    </type>
+  </preferences>
+  <!-- Debian -->
+  <packages type="image" profiles="odroid-u3_debian">
+    <package name="linux-image-armmp"/>
+    <package name="u-boot-tools"/>
+  </packages>
+  <!-- Alpine -->
+  <packages type="image" profiles="odroid-u3_alpine">
+    <package name="linux-lts"/>
+    <package name="uboot-tools"/>
+  </packages>
+  <!-- pmOS -->
+  <packages type="image" profiles="odroid-u3_pmos">
+    <package name="linux-odroid-u2"/>
+    <!-- Example specific kernel if available in pmos -->
+    <package name="postmarketos-base"/>
+  </packages>
 </image>

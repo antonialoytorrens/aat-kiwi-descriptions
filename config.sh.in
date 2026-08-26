@@ -3,18 +3,6 @@ set -euxo pipefail
 
 echo "Executing $0 ..."
 
-# Hostname
-echo "Configuring hostname..."
-echo "@HOSTNAME@" > /etc/hostname
-cat > /etc/hosts <<EOF
-127.0.0.1	localhost
-127.0.1.1	@HOSTNAME@
-
-::1		localhost ip6-localhost ip6-loopback
-ff02::1		ip6-allnodes
-ff02::2		ip6-allrouters
-EOF
-
 # Network
 echo "Configuring Network..."
 # Enable systemd-networkd if needed, or NetworkManager
@@ -31,25 +19,25 @@ systemctl enable unattended-upgrades
 
 # Preseed
 if [ -f /tmp/preseed.cfg ]; then
-    echo "Applying preseed configuration..."
-    debconf-set-selections /tmp/preseed.cfg
+	echo "Applying preseed configuration..."
+	debconf-set-selections /tmp/preseed.cfg
 fi
 
 # GRUB Theme
 if [ -d /boot/grub/themes/live-theme ]; then
-    echo "Configuring GRUB theme..."
-    echo 'GRUB_THEME="/boot/grub/themes/live-theme/theme.txt"' >> /etc/default/grub
-    # update-grub might need /proc /sys /dev mounted, which kiwi handles, but sometimes fails in chroot if not careful.
-    # Usually safer to rely on kiwi bootloader config or run it if verified working.
-    update-grub || true
+	echo "Configuring GRUB theme..."
+	echo 'GRUB_THEME="/boot/grub/themes/live-theme/theme.txt"' >>/etc/default/grub
+	# update-grub might need /proc /sys /dev mounted, which kiwi handles, but sometimes fails in chroot if not careful.
+	# Usually safer to rely on kiwi bootloader config or run it if verified working.
+	update-grub || true
 fi
 
 # Device-specific post-install hook, provided by the BSP overlay (if any).
 # Not part of the final image, so remove it once it has run.
 if [ -f /postinst.sh ]; then
-    echo "Running device-specific postinst.sh..."
-    bash /postinst.sh
-    rm -f /postinst.sh
+	echo "Running device-specific postinst.sh..."
+	bash /postinst.sh
+	rm -f /postinst.sh
 fi
 
 echo "Finished executing $0 ."
