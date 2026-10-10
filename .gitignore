@@ -10,3 +10,4 @@ __pycache__/
 
 # Generated config.sh
 config.sh
+.env
