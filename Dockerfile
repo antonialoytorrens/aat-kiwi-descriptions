@@ -16,5 +16,10 @@ RUN unzip -q /tmp/sonar-scanner.zip -d /opt \
     && mv /opt/sonar-scanner-${SONAR_SCANNER_CLI}-linux-x64 /opt/sonar-scanner \
     && rm -f /tmp/sonar-scanner.zip
 
+RUN useradd --create-home --shell /bin/bash builder \
+	&& mkdir -p /workspace \
+	&& chown builder:builder /workspace
+
+USER builder
 WORKDIR /workspace
 CMD ["bash"]

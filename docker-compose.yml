@@ -19,6 +19,7 @@ services:
     pull_policy: build
     platform: ${DOCKER_PLATFORM:-linux/amd64}
     privileged: true
+    user: "0:0"
     volumes:
       - .:/workspace
       - kiwi-cache:/var/cache/kiwi
