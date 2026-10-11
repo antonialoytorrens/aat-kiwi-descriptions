@@ -1,10 +1,13 @@
 <?xml version="1.0"?>
 <image>
   <packages type="image" profiles="server" patternType="plusRecommended">
+    <package name="btop"/>
     <package name="curl"/>
     <package name="fastfetch"/>
     <package name="hw-probe"/>
     <package name="iputils-ping"/>
+    <package name="lm-sensors"/>
+    <package name="monitorix"/>
     <package name="nano"/>
     <package name="net-tools"/>
     <package name="vim"/>
