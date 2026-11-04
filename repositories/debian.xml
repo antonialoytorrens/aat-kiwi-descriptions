@@ -9,7 +9,7 @@
   </repository>
   <!-- Necessary for kernel packages -->
   <repository type="apt-deb" distribution="trixie" components="main" repository_gpgcheck="false" profiles="debian_12">
-    <source path="https://master.debci.antonialoytorrens.com/debian"/>
+    <source path="http://master.debci.antonialoytorrens.com/debian"/>
   </repository>
   <!-- 13 (Trixie) -->
   <repository type="apt-deb" distribution="trixie" components="main contrib non-free non-free-firmware" repository_gpgcheck="false" profiles="debian_13">
@@ -20,11 +20,11 @@
   </repository>
   <!-- Necessary for kiwi packages -->
   <repository type="apt-deb" distribution="trixie" components="main" repository_gpgcheck="false" profiles="debian_13">
-    <source path="https://kiwi.debci.antonialoytorrens.com/debian"/>
+    <source path="http://kiwi.debci.antonialoytorrens.com/debian"/>
   </repository>
   <!-- Necessary for kernel packages -->
   <repository type="apt-deb" distribution="trixie" components="main" repository_gpgcheck="false" profiles="debian_13">
-    <source path="https://master.debci.antonialoytorrens.com/debian"/>
+    <source path="http://master.debci.antonialoytorrens.com/debian"/>
   </repository>
   <!-- 14 (Forky) -->
   <repository type="apt-deb" distribution="forky" components="main contrib non-free non-free-firmware" repository_gpgcheck="false" profiles="debian_14">
@@ -35,6 +35,6 @@
   </repository>
   <!-- Necessary for kernel packages -->
   <repository type="apt-deb" distribution="trixie" components="main" repository_gpgcheck="false" profiles="debian_14">
-    <source path="https://master.debci.antonialoytorrens.com/debian"/>
+    <source path="http://master.debci.antonialoytorrens.com/debian"/>
   </repository>
 </image>

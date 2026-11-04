@@ -51,6 +51,11 @@ help:
 		echo "  $$p: $$distros"; \
 	done
 	@echo ""
+	@echo "Supported tiers:"
+	@for t in $(SUPPORTED_TIERS); do \
+		echo "  - $$t"; \
+	done
+	@echo ""
 	@echo "Permitted releases per distro (first is the default):"
 	@for dr in $(RELEASES); do \
 		d=$${dr%%:*}; r=$${dr#*:}; \
