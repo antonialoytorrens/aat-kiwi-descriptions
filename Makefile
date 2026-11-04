@@ -9,11 +9,12 @@ empty :=
 space := $(empty) $(empty)
 DISTROS := $(foreach r,$(RELEASES),$(word 1,$(subst :, ,$(r))))
 DISTRO_ALT := $(subst $(space),|,$(DISTROS))
+TIER_ALT := $(subst $(space),|,$(SUPPORTED_TIERS))
 KIWI_VERSION := $(shell kiwi-ng --version 2>/dev/null | awk '{print $$NF}')
 
 # Listings
 PROFILES := $(shell grep 'profile name="' includes/profiles.xml | cut -d'"' -f2 | grep -E '_($(DISTRO_ALT))$$' | grep -v '^common_')
-PLATFORMS := $(shell grep 'profile name="' includes/profiles.xml | cut -d'"' -f2 | grep -Ev '_($(DISTRO_ALT))$$' | grep -v '^common_' | grep -Ev '^(workstation|server)$$' | grep -Ev '^($(DISTRO_ALT))_')
+PLATFORMS := $(shell grep 'profile name="' includes/profiles.xml | cut -d'"' -f2 | grep -Ev '_($(DISTRO_ALT))$$' | grep -v '^common_' | grep -Ev '^($(TIER_ALT))$$' | grep -Ev '^($(DISTRO_ALT))_')
 
 BUILD_DIR = build
 DISTRO   ?=
@@ -36,7 +37,7 @@ DOCKER_TARGETS := $(addprefix docker-,$(PLATFORMS) lint format clean bsp-pull)
 all: help
 
 help:
-	@echo "Usage: make <platform> DISTRO=<$(DISTRO_ALT)> TIER=<workstation|server> [RELEASE=<release>] [COMPRESS=0|1] [LOCALE=<locale>] [TIMEZONE=<timezone>] [KEYTABLE=<keytable>] [USERNAME=<username>] [PASSWORD=<password>] [HOSTNAME=<hostname>]"
+	@echo "Usage: make <platform> DISTRO=<$(DISTRO_ALT)> TIER=<$(TIER_ALT)> [RELEASE=<release>] [COMPRESS=0|1] [LOCALE=<locale>] [TIMEZONE=<timezone>] [KEYTABLE=<keytable>] [USERNAME=<username>] [PASSWORD=<password>] [HOSTNAME=<hostname>]"
 	@echo "Example (native, on host):     make pc-x86_64 DISTRO=debian TIER=workstation"
 	@echo "Example (isolated, in Docker): make docker-pc-x86_64 DISTRO=debian TIER=workstation"
 	@echo ""

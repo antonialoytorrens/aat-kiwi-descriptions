@@ -6,6 +6,7 @@
     <profile name="common_alpine" description="Common Alpine Base Profile"/>
     <!-- Tier Profiles - select alongside a platform_distro profile -->
     <profile name="workstation" description="Workstation tier - full desktop environment"/>
+    <profile name="lxqt" description="LXQt tier - LXQt desktop environment"/>
     <profile name="server" description="Server tier - headless, no desktop"/>
     <!-- Release Profiles - select alongside a platform_distro profile -->
     <profile name="debian_12" description="Debian 12 (Bookworm) repositories"/>

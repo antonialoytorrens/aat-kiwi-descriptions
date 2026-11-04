@@ -11,6 +11,7 @@ __pycache__/
 # Generated config.sh
 config.sh
 .env
+.*kate-swp
 
 # SonarQube
 .scannerwork

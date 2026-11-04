@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<image>
+    <packages type="image" profiles="lxqt">
+        <package name="task-lxqt-desktop"/>
+        <package name="libreoffice-qt5"/>
+        <package name="libreoffice-writer"/>
+        <package name="libreoffice-calc"/>
+        <package name="libreoffice-impress"/>
+        <package name="plasma-discover"/>
+        <package name="plasmatube"/>
+    </packages>
+</image>
