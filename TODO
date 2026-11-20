@@ -11,3 +11,5 @@ baseInsertService sshd
 # Setup default target, multi-user
 #--------------------------------------
 baseSetRunlevel 3
+
+bsp is a separate repository. I think it does not make any sense.
